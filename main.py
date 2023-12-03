@@ -21,6 +21,10 @@ def run_query(query: str, extra_log=True):
     ans = execute(procedure)
 
     if extra_log:
+        log_string += "\n** Tokens **\n"
+        for x in tokens:
+            log_string += str(x) + "\n"
+
         log_string += "\n** Dependencies **\n"
         for x in context_deps:
             log_string += str(x) + "\n"

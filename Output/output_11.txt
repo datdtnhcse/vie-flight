@@ -1,62 +1,46 @@
-##### OUTPUT OF QUERY QUESTION 1 #####
+##### OUTPUT OF QUERY QUESTION 11 #####
 
 ----- Tokenize -----
-máy_bay
-vj1
-xuất_phát
-từ
+máy
+bay
+nào
+đến
 thành_phố
-hồ_chí_minh
-10:00hr
-phải
-không
+huế
+lúc
+13:30hr
 ?
 ------------------------------
 
 
 ----- Dependency Parsing -----
-SHIFT	['Root', 'máy_bay']	['vj1', 'xuất_phát', 'từ', 'thành_phố', 'hồ_chí_minh', '10:00hr', 'phải', 'không', '?']
-RIGHTARC	['Root', 'máy_bay', 'vj1']	['xuất_phát', 'từ', 'thành_phố', 'hồ_chí_minh', '10:00hr', 'phải', 'không', '?']	(namemod, máy_bay, vj1)
-REDUCE	['Root', 'máy_bay']	['xuất_phát', 'từ', 'thành_phố', 'hồ_chí_minh', '10:00hr', 'phải', 'không', '?']
-LEFTARC	['Root']	['xuất_phát', 'từ', 'thành_phố', 'hồ_chí_minh', '10:00hr', 'phải', 'không', '?']	(subj, xuất_phát, máy_bay)
-RIGHTARC	['Root', 'xuất_phát']	['từ', 'thành_phố', 'hồ_chí_minh', '10:00hr', 'phải', 'không', '?']	(root, Root, xuất_phát)
-RIGHTARC	['Root', 'xuất_phát', 'từ']	['thành_phố', 'hồ_chí_minh', '10:00hr', 'phải', 'không', '?']	(pmod, xuất_phát, từ)
-RIGHTARC	['Root', 'xuất_phát', 'từ', 'thành_phố']	['hồ_chí_minh', '10:00hr', 'phải', 'không', '?']	(pobj, từ, thành_phố)
-RIGHTARC	['Root', 'xuất_phát', 'từ', 'thành_phố', 'hồ_chí_minh']	['10:00hr', 'phải', 'không', '?']	(namemod, thành_phố, hồ_chí_minh)
-RIGHTARC	['Root', 'xuất_phát', 'từ', 'thành_phố', 'hồ_chí_minh', '10:00hr']	['phải', 'không', '?']	(rtimemod, hồ_chí_minh, 10:00hr)
-REDUCE	['Root', 'xuất_phát', 'từ', 'thành_phố', 'hồ_chí_minh']	['phải', 'không', '?']
-REDUCE	['Root', 'xuất_phát', 'từ', 'thành_phố']	['phải', 'không', '?']
-REDUCE	['Root', 'xuất_phát', 'từ']	['phải', 'không', '?']
-REDUCE	['Root', 'xuất_phát']	['phải', 'không', '?']
-RIGHTARC	['Root', 'xuất_phát', 'phải']	['không', '?']	(aux, xuất_phát, phải)
-REDUCE	['Root', 'xuất_phát']	['không', '?']
-RIGHTARC	['Root', 'xuất_phát', 'không']	['?']	(aux, xuất_phát, không)
-REDUCE	['Root', 'xuất_phát']	['?']
-RIGHTARC	['Root', 'xuất_phát', '?']	[]	(punc, xuất_phát, ?)
+RIGHTARC	['Root', 'máy']	['bay', 'nào', 'đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	(rtimemod, Root, máy)
+REDUCE	['Root']	['bay', 'nào', 'đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	
+RIGHTARC	['Root', 'bay']	['nào', 'đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	(root, Root, bay)
+SHIFT	['Root', 'bay', 'nào']	['đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	
+REDUCE	['Root', 'bay']	['đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	
+REDUCE	['Root']	['đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	
+RIGHTARC	['Root', 'đến']	['thành_phố', 'huế', 'lúc', '13:30hr', '?']	(root, Root, đến)
+RIGHTARC	['Root', 'đến', 'thành_phố']	['huế', 'lúc', '13:30hr', '?']	(dobj, đến, thành_phố)
+RIGHTARC	['Root', 'đến', 'thành_phố', 'huế']	['lúc', '13:30hr', '?']	(namemod, thành_phố, huế)
+REDUCE	['Root', 'đến', 'thành_phố']	['lúc', '13:30hr', '?']	
+REDUCE	['Root', 'đến']	['lúc', '13:30hr', '?']	
+RIGHTARC	['Root', 'đến', 'lúc']	['13:30hr', '?']	(aux, đến, lúc)
+RIGHTARC	['Root', 'đến', 'lúc', '13:30hr']	['?']	(timemod, lúc, 13:30hr)
+REDUCE	['Root', 'đến', 'lúc']	['?']	
+REDUCE	['Root', 'đến']	['?']	
+RIGHTARC	['Root', 'đến', '?']	[]	(punc, đến, ?)
 
-(namemod, máy_bay, vj1) (subj, xuất_phát, máy_bay) (root, Root, xuất_phát) (pmod, xuất_phát, từ) (pobj, từ, thành_phố) (namemod, thành_phố, hồ_chí_minh) (rtimemod, hồ_chí_minh, 10:00hr) (aux, xuất_phát, phải) (aux, xuất_phát, không) (punc, xuất_phát, ?)
+(rtimemod, Root, máy) (root, Root, bay) (root, Root, đến) (dobj, đến, thành_phố) (namemod, thành_phố, huế) (aux, đến, lúc) (timemod, lúc, 13:30hr) (punc, đến, ?)
 ------------------------------
 
 
 ---- Grammartical Relation ----
-(s1 YNQUERY XUẤT_PHÁT)
-(s1 PRED XUẤT_PHÁT)
-(s1 LSUBJ MÁY_BAY)
-(s1 PFROM (NAME h1 "HỒ_CHÍ_MINH"))
-(s1 RUN_TIME 10:00HR)
+(s1 PRED BAY)
+(s1 PRED ĐẾN)
+(s1 LOBJ (NAME h1 "HUẾ"))
+(s1 RUN_TIME MÁY)
+(s1 TIME 13:30HR)
 -------------------------------
 
 
--------- Logical Form --------
-(YS QUERY(& (XUẤT_PHÁT s1) (EXPERIENCER s1 MÁY_BAY) (FROM_LOC fl s1 (NAME h1 "HỒ_CHÍ_MINH")) (RUN_TIME s1 10:00HR)))
-------------------------------
-
-
------ Procedure Semantics -----
-(YES-NO (RUN-TIME ?f HCM ?d ?rt))
--------------------------------
-
-
------- Procedure Execute ------
-Có.
--------------------------------

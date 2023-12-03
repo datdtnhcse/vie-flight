@@ -1,57 +1,19 @@
-##### OUTPUT OF QUERY QUESTION 1 #####
+##### OUTPUT OF QUERY QUESTION 8 #####
 
 ----- Tokenize -----
-có
-máy_bay
-nào
-xuất_phát
-từ
-hải_phòng
-không
+hãy
+cho
+biết
+mã
+hiệu
+các
+máy
+bay
+hạ
+cánh
+ở
+huế
 ?
 ------------------------------
 
 
------ Dependency Parsing -----
-SHIFT	['Root', 'có']	['máy_bay', 'nào', 'xuất_phát', 'từ', 'hải_phòng', 'không', '?']
-RIGHTARC	['Root', 'có', 'máy_bay']	['nào', 'xuất_phát', 'từ', 'hải_phòng', 'không', '?']	(nmod, có, máy_bay)
-RIGHTARC	['Root', 'có', 'máy_bay', 'nào']	['xuất_phát', 'từ', 'hải_phòng', 'không', '?']	(whmod, máy_bay, nào)
-REDUCE	['Root', 'có', 'máy_bay']	['xuất_phát', 'từ', 'hải_phòng', 'không', '?']
-LEFTARC	['Root', 'có']	['xuất_phát', 'từ', 'hải_phòng', 'không', '?']	(subj, xuất_phát, máy_bay)
-LEFTARC	['Root']	['xuất_phát', 'từ', 'hải_phòng', 'không', '?']	(aux, xuất_phát, có)
-RIGHTARC	['Root', 'xuất_phát']	['từ', 'hải_phòng', 'không', '?']	(root, Root, xuất_phát)
-RIGHTARC	['Root', 'xuất_phát', 'từ']	['hải_phòng', 'không', '?']	(pmod, xuất_phát, từ)
-RIGHTARC	['Root', 'xuất_phát', 'từ', 'hải_phòng']	['không', '?']	(pobj, từ, hải_phòng)
-REDUCE	['Root', 'xuất_phát', 'từ']	['không', '?']
-REDUCE	['Root', 'xuất_phát']	['không', '?']
-RIGHTARC	['Root', 'xuất_phát', 'không']	['?']	(aux, xuất_phát, không)
-REDUCE	['Root', 'xuất_phát']	['?']
-RIGHTARC	['Root', 'xuất_phát', '?']	[]	(punc, xuất_phát, ?)
-
-(nmod, có, máy_bay) (whmod, máy_bay, nào) (subj, xuất_phát, máy_bay) (aux, xuất_phát, có) (root, Root, xuất_phát) (pmod, xuất_phát, từ) (pobj, từ, hải_phòng) (aux, xuất_phát, không) (punc, xuất_phát, ?)
-------------------------------
-
-
----- Grammartical Relation ----
-(s1 WHQUERY (WHICH m1 MÁY_BAY))
-(s1 YNQUERY XUẤT_PHÁT)
-(s1 PRED XUẤT_PHÁT)
-(s1 LSUBJ MÁY_BAY)
-(CÓ NMOD MÁY_BAY)
-(s1 PFROM (NAME h1 "HẢI_PHÒNG"))
--------------------------------
-
-
--------- Logical Form --------
-(YS QUERY(& (XUẤT_PHÁT s1) (EXPERIENCER s1 (WHICH m1 MÁY_BAY)) (NMOD CÓ (WHICH m1 MÁY_BAY)) (FROM_LOC fl s1 (NAME h1 "HẢI_PHÒNG"))))
-------------------------------
-
-
------ Procedure Semantics -----
-(YES-NO (DTIME ?f HP ?st))
--------------------------------
-
-
------- Procedure Execute ------
-Không.
--------------------------------

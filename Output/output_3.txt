@@ -1,16 +1,49 @@
-##### OUTPUT OF QUERY QUESTION 1 #####
+##### OUTPUT OF QUERY QUESTION 3 #####
 
 ----- Tokenize -----
-hãy
-cho
-biết
-mã_hiệu
-các
-máy_bay
-hạ_cánh
-ở
-huế
+máy
+bay
+nào
+bay
+từ
+thành_phố
+hồ_chí_minh
+đến
+hà_nội
 ?
 ------------------------------
+
+
+----- Dependency Parsing -----
+RIGHTARC	['Root', 'máy']	['bay', 'nào', 'bay', 'từ', 'thành_phố', 'hồ_chí_minh', 'đến', 'hà_nội', '?']	(rtimemod, Root, máy)
+REDUCE	['Root']	['bay', 'nào', 'bay', 'từ', 'thành_phố', 'hồ_chí_minh', 'đến', 'hà_nội', '?']	
+RIGHTARC	['Root', 'bay']	['nào', 'bay', 'từ', 'thành_phố', 'hồ_chí_minh', 'đến', 'hà_nội', '?']	(root, Root, bay)
+SHIFT	['Root', 'bay', 'nào']	['bay', 'từ', 'thành_phố', 'hồ_chí_minh', 'đến', 'hà_nội', '?']	
+REDUCE	['Root', 'bay']	['bay', 'từ', 'thành_phố', 'hồ_chí_minh', 'đến', 'hà_nội', '?']	
+REDUCE	['Root']	['bay', 'từ', 'thành_phố', 'hồ_chí_minh', 'đến', 'hà_nội', '?']	
+RIGHTARC	['Root', 'bay']	['từ', 'thành_phố', 'hồ_chí_minh', 'đến', 'hà_nội', '?']	(root, Root, bay)
+RIGHTARC	['Root', 'bay', 'từ']	['thành_phố', 'hồ_chí_minh', 'đến', 'hà_nội', '?']	(pmod, bay, từ)
+RIGHTARC	['Root', 'bay', 'từ', 'thành_phố']	['hồ_chí_minh', 'đến', 'hà_nội', '?']	(pobj, từ, thành_phố)
+RIGHTARC	['Root', 'bay', 'từ', 'thành_phố', 'hồ_chí_minh']	['đến', 'hà_nội', '?']	(namemod, thành_phố, hồ_chí_minh)
+REDUCE	['Root', 'bay', 'từ', 'thành_phố']	['đến', 'hà_nội', '?']	
+RIGHTARC	['Root', 'bay', 'từ', 'thành_phố', 'đến']	['hà_nội', '?']	(timemod, thành_phố, đến)
+RIGHTARC	['Root', 'bay', 'từ', 'thành_phố', 'đến', 'hà_nội']	['?']	(pobj, đến, hà_nội)
+REDUCE	['Root', 'bay', 'từ', 'thành_phố', 'đến']	['?']	
+REDUCE	['Root', 'bay', 'từ', 'thành_phố']	['?']	
+REDUCE	['Root', 'bay', 'từ']	['?']	
+REDUCE	['Root', 'bay']	['?']	
+RIGHTARC	['Root', 'bay', '?']	[]	(punc, bay, ?)
+
+(rtimemod, Root, máy) (root, Root, bay) (root, Root, bay) (pmod, bay, từ) (pobj, từ, thành_phố) (namemod, thành_phố, hồ_chí_minh) (timemod, thành_phố, đến) (pobj, đến, hà_nội) (punc, bay, ?)
+------------------------------
+
+
+---- Grammartical Relation ----
+(s1 PRED BAY)
+(s1 RUN_TIME MÁY)
+(s1 PFROM (NAME h1 "HỒ_CHÍ_MINH"))
+(s1 TIME ĐẾN)
+(s1 PTO (NAME h1 "HÀ_NỘI"))
+-------------------------------
 
 

@@ -1,46 +1,46 @@
-##### OUTPUT OF QUERY QUESTION 1 #####
+##### OUTPUT OF QUERY QUESTION 7 #####
 
 ----- Tokenize -----
-thời_gian
-máy_bay
-vj5
+máy
 bay
-từ
-thành_phố
-hà_nội
+nào
 đến
-khánh_hòa
-mất
-mấy_giờ
+thành_phố
+huế
+lúc
+13:30hr
 ?
 ------------------------------
 
 
 ----- Dependency Parsing -----
-SHIFT	['Root', 'thời_gian']	['máy_bay', 'vj5', 'bay', 'từ', 'thành_phố', 'hà_nội', 'đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']
-RIGHTARC	['Root', 'thời_gian', 'máy_bay']	['vj5', 'bay', 'từ', 'thành_phố', 'hà_nội', 'đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']	(nmod, thời_gian, máy_bay)
-RIGHTARC	['Root', 'thời_gian', 'máy_bay', 'vj5']	['bay', 'từ', 'thành_phố', 'hà_nội', 'đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']	(namemod, máy_bay, vj5)
-REDUCE	['Root', 'thời_gian', 'máy_bay']	['bay', 'từ', 'thành_phố', 'hà_nội', 'đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']
-REDUCE	['Root', 'thời_gian']	['bay', 'từ', 'thành_phố', 'hà_nội', 'đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']
-LEFTARC	['Root']	['bay', 'từ', 'thành_phố', 'hà_nội', 'đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']	(subj, bay, thời_gian)
-RIGHTARC	['Root', 'bay']	['từ', 'thành_phố', 'hà_nội', 'đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']	(root, Root, bay)
-RIGHTARC	['Root', 'bay', 'từ']	['thành_phố', 'hà_nội', 'đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']	(pmod, bay, từ)
-RIGHTARC	['Root', 'bay', 'từ', 'thành_phố']	['hà_nội', 'đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']	(pobj, từ, thành_phố)
-RIGHTARC	['Root', 'bay', 'từ', 'thành_phố', 'hà_nội']	['đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']	(namemod, thành_phố, hà_nội)
-REDUCE	['Root', 'bay', 'từ', 'thành_phố']	['đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']
-RIGHTARC	['Root', 'bay', 'từ', 'thành_phố', 'đến']	['khánh_hòa', 'mất', 'mấy_giờ', '?']	(timemod, thành_phố, đến)
-RIGHTARC	['Root', 'bay', 'từ', 'thành_phố', 'đến', 'khánh_hòa']	['mất', 'mấy_giờ', '?']	(pobj, đến, khánh_hòa)
-REDUCE	['Root', 'bay', 'từ', 'thành_phố', 'đến']	['mất', 'mấy_giờ', '?']
-REDUCE	['Root', 'bay', 'từ', 'thành_phố']	['mất', 'mấy_giờ', '?']
-RIGHTARC	['Root', 'bay', 'từ', 'thành_phố', 'mất']	['mấy_giờ', '?']	(timemod, thành_phố, mất)
-RIGHTARC	['Root', 'bay', 'từ', 'thành_phố', 'mất', 'mấy_giờ']	['?']	(whmod, mất, mấy_giờ)
-REDUCE	['Root', 'bay', 'từ', 'thành_phố', 'mất']	['?']
-REDUCE	['Root', 'bay', 'từ', 'thành_phố']	['?']
-REDUCE	['Root', 'bay', 'từ']	['?']
-REDUCE	['Root', 'bay']	['?']
-RIGHTARC	['Root', 'bay', '?']	[]	(punc, bay, ?)
+RIGHTARC	['Root', 'máy']	['bay', 'nào', 'đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	(rtimemod, Root, máy)
+REDUCE	['Root']	['bay', 'nào', 'đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	
+RIGHTARC	['Root', 'bay']	['nào', 'đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	(root, Root, bay)
+SHIFT	['Root', 'bay', 'nào']	['đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	
+REDUCE	['Root', 'bay']	['đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	
+REDUCE	['Root']	['đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	
+RIGHTARC	['Root', 'đến']	['thành_phố', 'huế', 'lúc', '13:30hr', '?']	(root, Root, đến)
+RIGHTARC	['Root', 'đến', 'thành_phố']	['huế', 'lúc', '13:30hr', '?']	(dobj, đến, thành_phố)
+RIGHTARC	['Root', 'đến', 'thành_phố', 'huế']	['lúc', '13:30hr', '?']	(namemod, thành_phố, huế)
+REDUCE	['Root', 'đến', 'thành_phố']	['lúc', '13:30hr', '?']	
+REDUCE	['Root', 'đến']	['lúc', '13:30hr', '?']	
+RIGHTARC	['Root', 'đến', 'lúc']	['13:30hr', '?']	(aux, đến, lúc)
+RIGHTARC	['Root', 'đến', 'lúc', '13:30hr']	['?']	(timemod, lúc, 13:30hr)
+REDUCE	['Root', 'đến', 'lúc']	['?']	
+REDUCE	['Root', 'đến']	['?']	
+RIGHTARC	['Root', 'đến', '?']	[]	(punc, đến, ?)
 
-(nmod, thời_gian, máy_bay) (namemod, máy_bay, vj5) (subj, bay, thời_gian) (root, Root, bay) (pmod, bay, từ) (pobj, từ, thành_phố) (namemod, thành_phố, hà_nội) (timemod, thành_phố, đến) (pobj, đến, khánh_hòa) (timemod, thành_phố, mất) (whmod, mất, mấy_giờ) (punc, bay, ?)
+(rtimemod, Root, máy) (root, Root, bay) (root, Root, đến) (dobj, đến, thành_phố) (namemod, thành_phố, huế) (aux, đến, lúc) (timemod, lúc, 13:30hr) (punc, đến, ?)
 ------------------------------
+
+
+---- Grammartical Relation ----
+(s1 PRED BAY)
+(s1 PRED ĐẾN)
+(s1 LOBJ (NAME h1 "HUẾ"))
+(s1 RUN_TIME MÁY)
+(s1 TIME 13:30HR)
+-------------------------------
 
 

@@ -93,11 +93,13 @@ class Process:
             self.stack = [("Root", "Root")]
             self.buffer = list(zip(tokens, types))
 
-
         def transform(self) -> List[str]:
             """ MaltParser arc-eager """
 
             while len(self.buffer) > 0:
+                # print('buffer',self.buffer)
+                # print('stack',self.stack)
+
                 token = self.buffer[0]
                 word = self.stack[-1]
                 op, relation = self.__selectOp(word[1], token[1])
@@ -170,7 +172,8 @@ class Process:
                 elif not list(filter(lambda x: "root" in x, self.relations)):
                     return self.SHIFT, None
             elif buffType == "Time":
-                if stackType == "Aux" and (len(self.stack) < 2):
+                # if stackType == "Aux" and (len(self.stack) < 2):
+                if stackType == "Aux":
                     return self.RIGHTARC, "timemod"
                 else:
                     return self.RIGHTARC, "rtimemod"
@@ -201,7 +204,6 @@ class Process:
             self.variable = ["s1"]
             for i in range(len(relations)):
                 relations[i] = regex.sub(r'[,()]', "", relations[i])
-
                 if "namemod" in relations[i]:
                     tokens = relations[i].split()
                     name = ("[NAME-{}-\"{}\"]".format(super().createVariable(tokens[2][0]), tokens[2].upper()))
@@ -237,8 +239,7 @@ class Process:
                     if transformRelation not in self.gram_relation:
                         self.gram_relation.append(transformRelation)
 
-            # self.gram_relation = list(set(self.gram_relation))
-            # print(self.gram_relation)
+
             query = list(filter(lambda x: "QUERY" in x, self.gram_relation))
             pred = list(filter(lambda x: "PRED" in x, self.gram_relation))
             subj = list(filter(lambda x: "LSUBJ" in x, self.gram_relation))
@@ -284,93 +285,30 @@ class Process:
             relations = "\n".join(relation for relation in self.gram_relation)
             relations = relations.replace("-", " ").replace("[", "(").replace("]", ")")
 
+
+
             return "---- Grammartical Relation ----\n" + relations + "\n-------------------------------\n\n\n"
-
-
-    class LogicalForm(NLP):
-        def __init__(self, relations: List[str]) -> None:
-            super().__init__()
-            self.mode = "WH"
-            self.relations = relations
-            self.verb = "ATTITUDE"
-
-            for relation in self.relations:
-                if "LOBJ" in relation:
-                    self.verb = "VERB"
-
-            self.logicalForm = ["&"]
-
-
-        def transform(self) -> Tuple[List[str], str]:
-            for i in range(len(self.relations)):
-                relation = regex.sub(r'[()]', "", self.relations[i])
-                tokens = relation.split()
-
-                if "PRED" in relation:
-                    self.logicalForm.append("({} {})".format(tokens[2], tokens[0]))
-                elif "LSUBJ" in relation:
-                    if self.verb == "ATTITUDE":
-                        self.logicalForm.append("(EXPERIENCER {} {})".format(tokens[0], tokens[2]))
-                    elif self.verb == "VERB":
-                        self.logicalForm.append("(AGENT {} {})".format(tokens[0], tokens[2]))
-                elif "LOBJ" in relation:
-                    self.logicalForm.append("(THEME {} {})".format(tokens[0], tokens[2]))
-                elif "PFROM" in relation:
-                    self.logicalForm.append("(FROM_LOC {} {} {})".format("fl", tokens[0], tokens[2]))
-                elif "PTO" in relation:
-                    self.logicalForm.append("(TO_LOC {} {} {})".format("tl", tokens[0], tokens[2]))
-                elif "NMOD" in relation:
-                    self.logicalForm.append("(NMOD {} {})".format(tokens[0], tokens[2]))
-                elif "WHQUERY" in relation:
-                    self.mode = "WH"
-                    if "WHICH" in relation:
-                        subj = tokens[2][1:-1].split('-')[2]
-                        self.relations = [ele.replace(subj, tokens[2]) for ele in self.relations]
-                    elif "WHEN" in relation and "TIME" in relation:
-                        self.logicalForm.append("(AT_TIME {} {})".format(tokens[0], tokens[2]))
-                    elif "WHAT" in relation and "TIME" in relation:
-                        self.logicalForm.append("(RUN_TIME {} {})".format(tokens[0], tokens[2]))
-                elif "RUN_TIME" in relation:
-                        self.logicalForm.append("(RUN_TIME {} {})".format(tokens[0], tokens[2]))
-                elif "YNQUERY" in relation:
-                    self.mode = "YN"
-                elif "TIME" in relation:
-                    self.logicalForm.append("(AT_TIME {} {})".format(tokens[0], tokens[2]))
-
-            return self.logicalForm, self.mode
-
-
-        def __str__(self) -> str:
-            logicalForm = " ".join(ele for ele in self.logicalForm)
-
-            if self.mode == "WH":
-                logicalForm = "(WH-QUERY(" + logicalForm + "))"
-            elif self.mode == "YN":
-                logicalForm = "(YS-QUERY(" + logicalForm + "))"
-
-            logicalForm = logicalForm.replace("-", " ").replace("[", "(").replace("]", ")")
-            return "-------- Logical Form --------\n" + logicalForm + "\n------------------------------\n\n\n"
-
 
     class Procedure(NLP):
         def __init__(self, logicalForm: List[str], mode: str) -> None:
             super().__init__()
             self.logicalForm = logicalForm
+            # print(logicalForm)
             self.mode = mode
             self.subj = []
             self.action = None
-            self.varmap = {"TRAIN": "t", "STIME": "st", "DTIME": "dt", "RUN_TIME": "rt"}
-            self.variables = ["t", "st", "dt", "rt", "s", "d"]
-            self.runtime = [False, ["?t", "?s", "?d", "?rt"]]
-            self.atime = [False, ["?t", "?d", "?dt"]]
-            self.dtime = [False, ["?t", "?s", "?st"]]
+            self.varmap = {"TRAIN": "t", "STIME": "st", "DTIME": "dt", "RUN_TIME": "rt","FLIGHT":"f"}
+            self.variables = ["t","f", "st", "dt", "rt", "s", "d"]
+            self.runtime = [False, ["?f", "?s", "?d", "?rt"]]
+            self.atime = [False, ["?f", "?d", "?dt"]]
+            self.dtime = [False, ["?f", "?s", "?st"]]
 
 
         def transform(self) -> None:
             for relation in self.logicalForm:
                 relation = regex.sub(r'[()"]', "", relation)
                 tokens = relation.split()
-
+                # print(relation)
                 if "ID" in relation:
                     tokens = tokens[2][1:-1].split('-')
                     self.atime[1][0] = tokens[1]
@@ -436,9 +374,15 @@ class Process:
             dtime = None
             runtime = None
 
-            ids = set(map(lambda x: x.split()[1], io.queryDatabase("train")))
+            ids = set(map(lambda x: x.split()[1], io.queryDatabase("flight")))
             if self.atime[0]:
                 atime = io.queryDatabase("atime", *self.atime[1])
+                # print("======")
+                # print(self.atime[1])
+                # print(atime)
+                # print(set(map(lambda x: x.split()[1], atime)))
+                # print(ids)
+                # print("======")
                 ids = ids.intersection(set(map(lambda x: x.split()[1], atime)))
             if self.dtime[0]:
                 dtime = io.queryDatabase("dtime", *self.dtime[1])
@@ -446,16 +390,24 @@ class Process:
             if self.runtime[0]:
                 runtime = io.queryDatabase("rtime", *self.runtime[1])
                 ids = ids.intersection(set(map(lambda x: x.split()[1], runtime)))
-
+            # print("===")
+            # print(atime)
+            # print(dtime)
+            # print(self.mode)
+            # print(ids)
+            # print("===")
+            # print(self.subj)
             if self.mode == "WH":
                 for id in ids:
                     for subj in self.subj:
                         if subj == "TRAIN":
                             result += "Tàu hỏa {}. ".format(id)
+                        elif subj == "FLIGHT":
+                            result += "Máy bay {}. ".format(id)
                         elif subj == "RUN_TIME":
                             time = [ele.split()[4] for ele in runtime if id in ele][0]
                             result += "Thời gian chạy là {}. ".format(time)
-                        elif subj == "STIME":
+                        elif subj == "ATIME":
                             time = [ele.split()[3] for ele in dtime if id in ele][0]
                             result += "Chạy lúc {}. ".format(time)
                         elif subj == "DTIME":
@@ -467,7 +419,7 @@ class Process:
                 result += "Có. \n" if ids else "Không. \n"
 
             if result == "":
-                result = "Không tồn tại chuyến tàu thỏa yêu cầu. \n"
+                result = "Không tồn tại chuyến bay thỏa yêu cầu. \n"
 
             return "------ Procedure Execute ------\n" + result + "-------------------------------"
 
@@ -484,7 +436,6 @@ class Process:
 
             if self.mode == "WH":
                 prefix = "PRINT-ALL "
-
                 for subj in self.subj:
                     var = self.varmap[subj]
                     prefix += "?{} ({} ?{}) ".format(var, subj, var)
@@ -494,7 +445,6 @@ class Process:
                 procedure = "YES-NO " + " ".join(ele for ele in procedure)
 
             return "----- Procedure Semantics -----\n(" + procedure + ")\n-------------------------------\n\n\n"
-
 
     def pipeline(self, tokens: List[str], types: List[str]):
         parser = self.DependencyParser(tokens, types)

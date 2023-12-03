@@ -1,55 +1,68 @@
-##### OUTPUT OF QUERY QUESTION 1 #####
+##### OUTPUT OF QUERY QUESTION 6 #####
 
 ----- Tokenize -----
-máy_bay
-vn4
-có
-xuất_phát
-từ
-đà_nẵng
+máy
+bay
+của
+hãng
+hàng
 không
+vietjet
+air
+bay
+đến
+những
+thành_phố
+nào
 ?
 ------------------------------
 
 
 ----- Dependency Parsing -----
-SHIFT	['Root', 'máy_bay']	['vn4', 'có', 'xuất_phát', 'từ', 'đà_nẵng', 'không', '?']
-RIGHTARC	['Root', 'máy_bay', 'vn4']	['có', 'xuất_phát', 'từ', 'đà_nẵng', 'không', '?']	(namemod, máy_bay, vn4)
-SHIFT	['Root', 'máy_bay', 'vn4', 'có']	['xuất_phát', 'từ', 'đà_nẵng', 'không', '?']
-LEFTARC	['Root', 'máy_bay', 'vn4']	['xuất_phát', 'từ', 'đà_nẵng', 'không', '?']	(aux, xuất_phát, có)
-REDUCE	['Root', 'máy_bay']	['xuất_phát', 'từ', 'đà_nẵng', 'không', '?']
-LEFTARC	['Root']	['xuất_phát', 'từ', 'đà_nẵng', 'không', '?']	(subj, xuất_phát, máy_bay)
-RIGHTARC	['Root', 'xuất_phát']	['từ', 'đà_nẵng', 'không', '?']	(root, Root, xuất_phát)
-RIGHTARC	['Root', 'xuất_phát', 'từ']	['đà_nẵng', 'không', '?']	(pmod, xuất_phát, từ)
-RIGHTARC	['Root', 'xuất_phát', 'từ', 'đà_nẵng']	['không', '?']	(pobj, từ, đà_nẵng)
-REDUCE	['Root', 'xuất_phát', 'từ']	['không', '?']
-REDUCE	['Root', 'xuất_phát']	['không', '?']
-RIGHTARC	['Root', 'xuất_phát', 'không']	['?']	(aux, xuất_phát, không)
-REDUCE	['Root', 'xuất_phát']	['?']
-RIGHTARC	['Root', 'xuất_phát', '?']	[]	(punc, xuất_phát, ?)
+RIGHTARC	['Root', 'máy']	['bay', 'của', 'hãng', 'hàng', 'không', 'vietjet', 'air', 'bay', 'đến', 'những', 'thành_phố', 'nào', '?']	(rtimemod, Root, máy)
+REDUCE	['Root']	['bay', 'của', 'hãng', 'hàng', 'không', 'vietjet', 'air', 'bay', 'đến', 'những', 'thành_phố', 'nào', '?']	
+RIGHTARC	['Root', 'bay']	['của', 'hãng', 'hàng', 'không', 'vietjet', 'air', 'bay', 'đến', 'những', 'thành_phố', 'nào', '?']	(root, Root, bay)
+RIGHTARC	['Root', 'bay', 'của']	['hãng', 'hàng', 'không', 'vietjet', 'air', 'bay', 'đến', 'những', 'thành_phố', 'nào', '?']	(rtimemod, bay, của)
+RIGHTARC	['Root', 'bay', 'của', 'hãng']	['hàng', 'không', 'vietjet', 'air', 'bay', 'đến', 'những', 'thành_phố', 'nào', '?']	(rtimemod, của, hãng)
+RIGHTARC	['Root', 'bay', 'của', 'hãng', 'hàng']	['không', 'vietjet', 'air', 'bay', 'đến', 'những', 'thành_phố', 'nào', '?']	(rtimemod, hãng, hàng)
+REDUCE	['Root', 'bay', 'của', 'hãng']	['không', 'vietjet', 'air', 'bay', 'đến', 'những', 'thành_phố', 'nào', '?']	
+REDUCE	['Root', 'bay', 'của']	['không', 'vietjet', 'air', 'bay', 'đến', 'những', 'thành_phố', 'nào', '?']	
+REDUCE	['Root', 'bay']	['không', 'vietjet', 'air', 'bay', 'đến', 'những', 'thành_phố', 'nào', '?']	
+RIGHTARC	['Root', 'bay', 'không']	['vietjet', 'air', 'bay', 'đến', 'những', 'thành_phố', 'nào', '?']	(aux, bay, không)
+RIGHTARC	['Root', 'bay', 'không', 'vietjet']	['air', 'bay', 'đến', 'những', 'thành_phố', 'nào', '?']	(timemod, không, vietjet)
+RIGHTARC	['Root', 'bay', 'không', 'vietjet', 'air']	['bay', 'đến', 'những', 'thành_phố', 'nào', '?']	(rtimemod, vietjet, air)
+REDUCE	['Root', 'bay', 'không', 'vietjet']	['bay', 'đến', 'những', 'thành_phố', 'nào', '?']	
+REDUCE	['Root', 'bay', 'không']	['bay', 'đến', 'những', 'thành_phố', 'nào', '?']	
+LEFTARC	['Root', 'bay']	['bay', 'đến', 'những', 'thành_phố', 'nào', '?']	(aux, bay, không)
+REDUCE	['Root']	['bay', 'đến', 'những', 'thành_phố', 'nào', '?']	
+RIGHTARC	['Root', 'bay']	['đến', 'những', 'thành_phố', 'nào', '?']	(root, Root, bay)
+REDUCE	['Root']	['đến', 'những', 'thành_phố', 'nào', '?']	
+RIGHTARC	['Root', 'đến']	['những', 'thành_phố', 'nào', '?']	(root, Root, đến)
+RIGHTARC	['Root', 'đến', 'những']	['thành_phố', 'nào', '?']	(rtimemod, đến, những)
+REDUCE	['Root', 'đến']	['thành_phố', 'nào', '?']	
+RIGHTARC	['Root', 'đến', 'thành_phố']	['nào', '?']	(dobj, đến, thành_phố)
+RIGHTARC	['Root', 'đến', 'thành_phố', 'nào']	['?']	(whmod, thành_phố, nào)
+REDUCE	['Root', 'đến', 'thành_phố']	['?']	
+REDUCE	['Root', 'đến']	['?']	
+RIGHTARC	['Root', 'đến', '?']	[]	(punc, đến, ?)
 
-(namemod, máy_bay, vn4) (aux, xuất_phát, có) (subj, xuất_phát, máy_bay) (root, Root, xuất_phát) (pmod, xuất_phát, từ) (pobj, từ, đà_nẵng) (aux, xuất_phát, không) (punc, xuất_phát, ?)
+(rtimemod, Root, máy) (root, Root, bay) (rtimemod, bay, của) (rtimemod, của, hãng) (rtimemod, hãng, hàng) (aux, bay, không) (timemod, không, vietjet) (rtimemod, vietjet, air) (aux, bay, không) (root, Root, bay) (root, Root, đến) (rtimemod, đến, những) (dobj, đến, thành_phố) (whmod, thành_phố, nào) (punc, đến, ?)
 ------------------------------
 
 
 ---- Grammartical Relation ----
-(s1 YNQUERY XUẤT_PHÁT)
-(s1 PRED XUẤT_PHÁT)
-(s1 LSUBJ MÁY_BAY)
-(s1 PFROM (NAME đ1 "ĐÀ_NẴNG"))
+(s1 YNQUERY BAY)
+(s1 WHQUERY (WHICH t1 THÀNH_PHỐ))
+(s1 PRED BAY)
+(s1 PRED ĐẾN)
+(s1 LOBJ thành_phố)
+(s1 RUN_TIME MÁY)
+(s1 RUN_TIME CỦA)
+(s1 RUN_TIME HÃNG)
+(s1 RUN_TIME HÀNG)
+(s1 TIME VIETJET)
+(s1 RUN_TIME AIR)
+(s1 RUN_TIME NHỮNG)
 -------------------------------
 
 
--------- Logical Form --------
-(YS QUERY(& (XUẤT_PHÁT s1) (EXPERIENCER s1 MÁY_BAY) (FROM_LOC fl s1 (NAME đ1 "ĐÀ_NẴNG"))))
-------------------------------
-
-
------ Procedure Semantics -----
-(YES-NO (DTIME ?f ĐN ?st))
--------------------------------
-
-
------- Procedure Execute ------
-Có.
--------------------------------

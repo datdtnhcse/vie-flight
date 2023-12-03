@@ -1,0 +1,16 @@
+##### OUTPUT OF QUERY QUESTION 6 #####
+
+----- Tokenize -----
+có
+máy_bay
+nào
+bay
+từ
+hải_phòng
+đến
+khánh_hòa
+không
+?
+------------------------------
+
+

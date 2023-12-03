@@ -1,16 +1,12 @@
-##### OUTPUT OF QUERY QUESTION 5 #####
+##### OUTPUT OF QUERY QUESTION 12 #####
 
 ----- Tokenize -----
+có
 máy_bay
-vj1
+nào
 xuất_phát
 từ
-hcmc
-10
-:
-00hr
-phải
-không
+hải_phòng_không
 ?
 ------------------------------
 

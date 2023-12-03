@@ -1,0 +1,18 @@
+##### OUTPUT OF QUERY QUESTION 10 #####
+
+----- Tokenize -----
+máy_bay
+nào
+bay
+từ
+đà_nẵng
+đến
+thành_phố
+hồ_chí_minh
+mất
+1
+giờ
+?
+------------------------------
+
+

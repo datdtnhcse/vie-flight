@@ -1,0 +1,14 @@
+##### OUTPUT OF QUERY QUESTION 1 #####
+
+----- Tokenize -----
+máy_bay
+vn4
+có
+xuất_phát
+từ
+đà_nẵng
+không
+?
+------------------------------
+
+

@@ -1,0 +1,16 @@
+##### OUTPUT OF QUERY QUESTION 8 #####
+
+----- Tokenize -----
+hãy
+cho
+biết
+mã_hiệu
+các
+máy_bay
+hạ_cánh
+ở
+huế
+?
+------------------------------
+
+

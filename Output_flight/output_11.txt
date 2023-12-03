@@ -1,0 +1,17 @@
+##### OUTPUT OF QUERY QUESTION 11 #####
+
+----- Tokenize -----
+máy_bay
+của
+hãng
+hàng_không
+vietjet_air
+bay
+đến
+những
+thành_phố
+nào
+?
+------------------------------
+
+

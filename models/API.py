@@ -12,7 +12,7 @@ class PreProcessing:
     def getInstance():
         if not PreProcessing.instance:
             PreProcessing.instance = PreProcessing()
-        
+
         return PreProcessing.instance
 
 
@@ -40,12 +40,12 @@ class PreProcessing:
                             types.append(DICTIONARY[token][1])
                             break
                     else:
-                        types.append(DICTIONARY[token][0])    
+                        types.append(DICTIONARY[token][0])
             elif token in PLACE:
                 types.append("Name")
             else:
                 types.append("ID" if regex.search("b\d", token) else "Time")
-                    
+
 
         return types
 
@@ -92,7 +92,7 @@ class Process:
             self.relations = []
             self.stack = [("Root", "Root")]
             self.buffer = list(zip(tokens, types))
-    
+
 
         def transform(self) -> List[str]:
             """ MaltParser arc-eager """
@@ -188,7 +188,7 @@ class Process:
         def __str__(self) -> str:
             stepStr = "\n".join(step for step in self.step)
             relationStr = " ".join(relation for relation in self.relations)
-            return "----- Dependency Parsing -----\n" + stepStr + "\n\n" + relationStr + "\n------------------------------\n\n\n" 
+            return "----- Dependency Parsing -----\n" + stepStr + "\n\n" + relationStr + "\n------------------------------\n\n\n"
 
 
     class GrammarRelation(NLP):
@@ -250,7 +250,7 @@ class Process:
             if "root" in relation:
                 result = "({} PRED {})".format("s1", relation[2].upper())
             elif "subj" in relation:
-                result = "({} LSUBJ {})".format("s1", relation[2].upper())   
+                result = "({} LSUBJ {})".format("s1", relation[2].upper())
             elif "dobj" in relation:
                 result = "({} LOBJ {})".format("s1", relation[2])
             elif "timemod" in relation:
@@ -272,7 +272,7 @@ class Process:
 
             return result
 
-        
+
         def __str__(self) -> str:
             relations = "\n".join(relation for relation in self.gram_relation)
             relations = relations.replace("-", " ").replace("[", "(").replace("]", ")")
@@ -356,7 +356,7 @@ class Process:
             self.atime = [False, ["?t", "?d", "?dt"]]
             self.dtime = [False, ["?t", "?s", "?st"]]
 
-        
+
         def transform(self) -> None:
             for relation in self.logicalForm:
                 relation = regex.sub(r'[()"]', "", relation)
@@ -458,7 +458,7 @@ class Process:
 
         def __str__(self) -> str:
             procedure = []
-            
+
             if self.runtime[0]:
                 procedure.append("(RUN-TIME {} {} {} {})".format(*self.runtime[1]))
             if self.atime[0]:
@@ -468,7 +468,7 @@ class Process:
 
             if self.mode == "WH":
                 prefix = "PRINT-ALL "
-                
+
                 for subj in self.subj:
                     var = self.varmap[subj]
                     prefix += "?{} ({} ?{}) ".format(var, subj, var)
@@ -476,7 +476,7 @@ class Process:
                 procedure = prefix + " ".join(ele for ele in procedure)
             elif self.mode == "YN":
                 procedure = "YES-NO " + " ".join(ele for ele in procedure)
-            
+
             return "----- Procedure Semantics -----\n(" + procedure + ")\n-------------------------------\n\n\n"
 
 

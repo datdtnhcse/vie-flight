@@ -1,0 +1,16 @@
+##### OUTPUT OF QUERY QUESTION 7 #####
+
+----- Tokenize -----
+máy_bay
+nào
+đến
+thành_phố
+huế
+lúc
+13
+:
+30hr
+?
+------------------------------
+
+

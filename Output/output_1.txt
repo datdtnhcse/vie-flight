@@ -1,56 +1,55 @@
 ##### OUTPUT OF QUERY QUESTION 1 #####
 
---------- Tokenize ---------
+----- Tokenize -----
 tàu_hỏa
-nào
-đến
-thành_phố
-huế
-lúc
-19:00hr
+b5
+có
+chạy
+từ
+đà_nẵng
+không
 ?
 ------------------------------
 
 
 ----- Dependency Parsing -----
-SHIFT	['Root', 'tàu_hỏa']	['nào', 'đến', 'thành_phố', 'huế', 'lúc', '19:00hr', '?']	
-RIGHTARC	['Root', 'tàu_hỏa', 'nào']	['đến', 'thành_phố', 'huế', 'lúc', '19:00hr', '?']	(whmod, tàu_hỏa, nào)
-REDUCE	['Root', 'tàu_hỏa']	['đến', 'thành_phố', 'huế', 'lúc', '19:00hr', '?']	
-LEFTARC	['Root']	['đến', 'thành_phố', 'huế', 'lúc', '19:00hr', '?']	(subj, đến, tàu_hỏa)
-RIGHTARC	['Root', 'đến']	['thành_phố', 'huế', 'lúc', '19:00hr', '?']	(root, Root, đến)
-RIGHTARC	['Root', 'đến', 'thành_phố']	['huế', 'lúc', '19:00hr', '?']	(dobj, đến, thành_phố)
-RIGHTARC	['Root', 'đến', 'thành_phố', 'huế']	['lúc', '19:00hr', '?']	(namemod, thành_phố, huế)
-REDUCE	['Root', 'đến', 'thành_phố']	['lúc', '19:00hr', '?']	
-REDUCE	['Root', 'đến']	['lúc', '19:00hr', '?']	
-RIGHTARC	['Root', 'đến', 'lúc']	['19:00hr', '?']	(aux, đến, lúc)
-RIGHTARC	['Root', 'đến', 'lúc', '19:00hr']	['?']	(timemod, lúc, 19:00hr)
-REDUCE	['Root', 'đến', 'lúc']	['?']	
-REDUCE	['Root', 'đến']	['?']	
-RIGHTARC	['Root', 'đến', '?']	[]	(punc, đến, ?)
+SHIFT	['Root', 'tàu_hỏa']	['b5', 'có', 'chạy', 'từ', 'đà_nẵng', 'không', '?']	
+RIGHTARC	['Root', 'tàu_hỏa', 'b5']	['có', 'chạy', 'từ', 'đà_nẵng', 'không', '?']	(idmod, tàu_hỏa, b5)
+SHIFT	['Root', 'tàu_hỏa', 'b5', 'có']	['chạy', 'từ', 'đà_nẵng', 'không', '?']	
+LEFTARC	['Root', 'tàu_hỏa', 'b5']	['chạy', 'từ', 'đà_nẵng', 'không', '?']	(aux, chạy, có)
+REDUCE	['Root', 'tàu_hỏa']	['chạy', 'từ', 'đà_nẵng', 'không', '?']	
+LEFTARC	['Root']	['chạy', 'từ', 'đà_nẵng', 'không', '?']	(subj, chạy, tàu_hỏa)
+RIGHTARC	['Root', 'chạy']	['từ', 'đà_nẵng', 'không', '?']	(root, Root, chạy)
+RIGHTARC	['Root', 'chạy', 'từ']	['đà_nẵng', 'không', '?']	(pmod, chạy, từ)
+RIGHTARC	['Root', 'chạy', 'từ', 'đà_nẵng']	['không', '?']	(pobj, từ, đà_nẵng)
+REDUCE	['Root', 'chạy', 'từ']	['không', '?']	
+REDUCE	['Root', 'chạy']	['không', '?']	
+RIGHTARC	['Root', 'chạy', 'không']	['?']	(aux, chạy, không)
+REDUCE	['Root', 'chạy']	['?']	
+RIGHTARC	['Root', 'chạy', '?']	[]	(punc, chạy, ?)
 
-(whmod, tàu_hỏa, nào) (subj, đến, tàu_hỏa) (root, Root, đến) (dobj, đến, thành_phố) (namemod, thành_phố, huế) (aux, đến, lúc) (timemod, lúc, 19:00hr) (punc, đến, ?)
+(idmod, tàu_hỏa, b5) (aux, chạy, có) (subj, chạy, tàu_hỏa) (root, Root, chạy) (pmod, chạy, từ) (pobj, từ, đà_nẵng) (aux, chạy, không) (punc, chạy, ?)
 ------------------------------
 
 
 ---- Grammartical Relation ----
-(s1 WHQUERY (WHICH t1 TÀU_HỎA))
-(s1 PRED ĐẾN)
-(s1 LSUBJ TÀU_HỎA)
-(s1 LOBJ (NAME h1 "HUẾ"))
-(s1 TIME 19:00HR)
+(s1 YNQUERY CHẠY)
+(s1 PRED CHẠY)
+(s1 LSUBJ (ID B5 TÀU_HỎA))
+(s1 PFROM (NAME đ1 "ĐÀ_NẴNG"))
 -------------------------------
 
 
 -------- Logical Form --------
-(WH QUERY(& (ĐẾN s1) (AGENT s1 (WHICH t1 TÀU_HỎA)) (THEME s1 (NAME h1 "HUẾ")) (AT_TIME s1 19:00HR)))
+(YS QUERY(& (CHẠY s1) (EXPERIENCER s1 (ID B5 TÀU_HỎA)) (FROM_LOC fl s1 (NAME đ1 "ĐÀ_NẴNG"))))
 ------------------------------
 
 
 ----- Procedure Semantics -----
-(PRINT-ALL ?t (TRAIN ?t) (ATIME ?t HUE 19:00HR))
+(YES-NO (DTIME B5 DANANG ?st))
 -------------------------------
 
 
 ------ Procedure Execute ------
-Tàu hỏa B1. 
+Không. 
 -------------------------------

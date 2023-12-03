@@ -16,25 +16,25 @@ mất
 
 
 ----- Dependency Parsing -----
-SHIFT	['Root', 'máy_bay']	['nào', 'bay', 'từ', 'thành_phố', 'hồ_chí_minh', 'đến', 'đà_nẵng', 'mất', '1:00hr', '?']	
+SHIFT	['Root', 'máy_bay']	['nào', 'bay', 'từ', 'thành_phố', 'hồ_chí_minh', 'đến', 'đà_nẵng', 'mất', '1:00hr', '?']
 RIGHTARC	['Root', 'máy_bay', 'nào']	['bay', 'từ', 'thành_phố', 'hồ_chí_minh', 'đến', 'đà_nẵng', 'mất', '1:00hr', '?']	(whmod, máy_bay, nào)
-REDUCE	['Root', 'máy_bay']	['bay', 'từ', 'thành_phố', 'hồ_chí_minh', 'đến', 'đà_nẵng', 'mất', '1:00hr', '?']	
+REDUCE	['Root', 'máy_bay']	['bay', 'từ', 'thành_phố', 'hồ_chí_minh', 'đến', 'đà_nẵng', 'mất', '1:00hr', '?']
 LEFTARC	['Root']	['bay', 'từ', 'thành_phố', 'hồ_chí_minh', 'đến', 'đà_nẵng', 'mất', '1:00hr', '?']	(subj, bay, máy_bay)
 RIGHTARC	['Root', 'bay']	['từ', 'thành_phố', 'hồ_chí_minh', 'đến', 'đà_nẵng', 'mất', '1:00hr', '?']	(root, Root, bay)
 RIGHTARC	['Root', 'bay', 'từ']	['thành_phố', 'hồ_chí_minh', 'đến', 'đà_nẵng', 'mất', '1:00hr', '?']	(pmod, bay, từ)
 RIGHTARC	['Root', 'bay', 'từ', 'thành_phố']	['hồ_chí_minh', 'đến', 'đà_nẵng', 'mất', '1:00hr', '?']	(pobj, từ, thành_phố)
 RIGHTARC	['Root', 'bay', 'từ', 'thành_phố', 'hồ_chí_minh']	['đến', 'đà_nẵng', 'mất', '1:00hr', '?']	(namemod, thành_phố, hồ_chí_minh)
-REDUCE	['Root', 'bay', 'từ', 'thành_phố']	['đến', 'đà_nẵng', 'mất', '1:00hr', '?']	
+REDUCE	['Root', 'bay', 'từ', 'thành_phố']	['đến', 'đà_nẵng', 'mất', '1:00hr', '?']
 RIGHTARC	['Root', 'bay', 'từ', 'thành_phố', 'đến']	['đà_nẵng', 'mất', '1:00hr', '?']	(timemod, thành_phố, đến)
 RIGHTARC	['Root', 'bay', 'từ', 'thành_phố', 'đến', 'đà_nẵng']	['mất', '1:00hr', '?']	(pobj, đến, đà_nẵng)
-REDUCE	['Root', 'bay', 'từ', 'thành_phố', 'đến']	['mất', '1:00hr', '?']	
-REDUCE	['Root', 'bay', 'từ', 'thành_phố']	['mất', '1:00hr', '?']	
+REDUCE	['Root', 'bay', 'từ', 'thành_phố', 'đến']	['mất', '1:00hr', '?']
+REDUCE	['Root', 'bay', 'từ', 'thành_phố']	['mất', '1:00hr', '?']
 RIGHTARC	['Root', 'bay', 'từ', 'thành_phố', 'mất']	['1:00hr', '?']	(timemod, thành_phố, mất)
 RIGHTARC	['Root', 'bay', 'từ', 'thành_phố', 'mất', '1:00hr']	['?']	(rtimemod, mất, 1:00hr)
-REDUCE	['Root', 'bay', 'từ', 'thành_phố', 'mất']	['?']	
-REDUCE	['Root', 'bay', 'từ', 'thành_phố']	['?']	
-REDUCE	['Root', 'bay', 'từ']	['?']	
-REDUCE	['Root', 'bay']	['?']	
+REDUCE	['Root', 'bay', 'từ', 'thành_phố', 'mất']	['?']
+REDUCE	['Root', 'bay', 'từ', 'thành_phố']	['?']
+REDUCE	['Root', 'bay', 'từ']	['?']
+REDUCE	['Root', 'bay']	['?']
 RIGHTARC	['Root', 'bay', '?']	[]	(punc, bay, ?)
 
 (whmod, máy_bay, nào) (subj, bay, máy_bay) (root, Root, bay) (pmod, bay, từ) (pobj, từ, thành_phố) (namemod, thành_phố, hồ_chí_minh) (timemod, thành_phố, đến) (pobj, đến, đà_nẵng) (timemod, thành_phố, mất) (rtimemod, mất, 1:00hr) (punc, bay, ?)
@@ -64,6 +64,6 @@ RIGHTARC	['Root', 'bay', '?']	[]	(punc, bay, ?)
 
 
 ------ Procedure Execute ------
-Máy bay VJ4. 
-Máy bay VN2. 
+Máy bay VJ4.
+Máy bay VN2.
 -------------------------------

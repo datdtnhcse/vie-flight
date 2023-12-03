@@ -13,19 +13,19 @@ lúc
 
 
 ----- Dependency Parsing -----
-SHIFT	['Root', 'máy_bay']	['nào', 'đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	
+SHIFT	['Root', 'máy_bay']	['nào', 'đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']
 RIGHTARC	['Root', 'máy_bay', 'nào']	['đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	(whmod, máy_bay, nào)
-REDUCE	['Root', 'máy_bay']	['đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	
+REDUCE	['Root', 'máy_bay']	['đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']
 LEFTARC	['Root']	['đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	(subj, đến, máy_bay)
 RIGHTARC	['Root', 'đến']	['thành_phố', 'huế', 'lúc', '13:30hr', '?']	(root, Root, đến)
 RIGHTARC	['Root', 'đến', 'thành_phố']	['huế', 'lúc', '13:30hr', '?']	(dobj, đến, thành_phố)
 RIGHTARC	['Root', 'đến', 'thành_phố', 'huế']	['lúc', '13:30hr', '?']	(namemod, thành_phố, huế)
-REDUCE	['Root', 'đến', 'thành_phố']	['lúc', '13:30hr', '?']	
-REDUCE	['Root', 'đến']	['lúc', '13:30hr', '?']	
+REDUCE	['Root', 'đến', 'thành_phố']	['lúc', '13:30hr', '?']
+REDUCE	['Root', 'đến']	['lúc', '13:30hr', '?']
 RIGHTARC	['Root', 'đến', 'lúc']	['13:30hr', '?']	(aux, đến, lúc)
 RIGHTARC	['Root', 'đến', 'lúc', '13:30hr']	['?']	(timemod, lúc, 13:30hr)
-REDUCE	['Root', 'đến', 'lúc']	['?']	
-REDUCE	['Root', 'đến']	['?']	
+REDUCE	['Root', 'đến', 'lúc']	['?']
+REDUCE	['Root', 'đến']	['?']
 RIGHTARC	['Root', 'đến', '?']	[]	(punc, đến, ?)
 
 (whmod, máy_bay, nào) (subj, đến, máy_bay) (root, Root, đến) (dobj, đến, thành_phố) (namemod, thành_phố, huế) (aux, đến, lúc) (timemod, lúc, 13:30hr) (punc, đến, ?)
@@ -52,5 +52,5 @@ RIGHTARC	['Root', 'đến', '?']	[]	(punc, đến, ?)
 
 
 ------ Procedure Execute ------
-Máy bay VJ1. 
+Máy bay VJ1.
 -------------------------------

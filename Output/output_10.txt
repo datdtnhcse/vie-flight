@@ -1,0 +1,62 @@
+##### OUTPUT OF QUERY QUESTION 1 #####
+
+----- Tokenize -----
+máy_bay
+của
+hãng
+hàng_không
+vietjet_air
+bay
+đến
+những
+thành_phố
+nào
+?
+------------------------------
+
+
+----- Dependency Parsing -----
+SHIFT	['Root', 'máy_bay']	['của', 'hãng', 'hàng_không', 'vietjet_air', 'bay', 'đến', 'những', 'thành_phố', 'nào', '?']
+RIGHTARC	['Root', 'máy_bay', 'của']	['hãng', 'hàng_không', 'vietjet_air', 'bay', 'đến', 'những', 'thành_phố', 'nào', '?']	(rtimemod, máy_bay, của)
+RIGHTARC	['Root', 'máy_bay', 'của', 'hãng']	['hàng_không', 'vietjet_air', 'bay', 'đến', 'những', 'thành_phố', 'nào', '?']	(rtimemod, của, hãng)
+RIGHTARC	['Root', 'máy_bay', 'của', 'hãng', 'hàng_không']	['vietjet_air', 'bay', 'đến', 'những', 'thành_phố', 'nào', '?']	(rtimemod, hãng, hàng_không)
+RIGHTARC	['Root', 'máy_bay', 'của', 'hãng', 'hàng_không', 'vietjet_air']	['bay', 'đến', 'những', 'thành_phố', 'nào', '?']	(rtimemod, hàng_không, vietjet_air)
+REDUCE	['Root', 'máy_bay', 'của', 'hãng', 'hàng_không']	['bay', 'đến', 'những', 'thành_phố', 'nào', '?']
+REDUCE	['Root', 'máy_bay', 'của', 'hãng']	['bay', 'đến', 'những', 'thành_phố', 'nào', '?']
+REDUCE	['Root', 'máy_bay', 'của']	['bay', 'đến', 'những', 'thành_phố', 'nào', '?']
+REDUCE	['Root', 'máy_bay']	['bay', 'đến', 'những', 'thành_phố', 'nào', '?']
+LEFTARC	['Root']	['bay', 'đến', 'những', 'thành_phố', 'nào', '?']	(subj, bay, máy_bay)
+RIGHTARC	['Root', 'bay']	['đến', 'những', 'thành_phố', 'nào', '?']	(root, Root, bay)
+REDUCE	['Root']	['đến', 'những', 'thành_phố', 'nào', '?']
+RIGHTARC	['Root', 'đến']	['những', 'thành_phố', 'nào', '?']	(root, Root, đến)
+RIGHTARC	['Root', 'đến', 'những']	['thành_phố', 'nào', '?']	(rtimemod, đến, những)
+REDUCE	['Root', 'đến']	['thành_phố', 'nào', '?']
+RIGHTARC	['Root', 'đến', 'thành_phố']	['nào', '?']	(dobj, đến, thành_phố)
+RIGHTARC	['Root', 'đến', 'thành_phố', 'nào']	['?']	(whmod, thành_phố, nào)
+REDUCE	['Root', 'đến', 'thành_phố']	['?']
+REDUCE	['Root', 'đến']	['?']
+RIGHTARC	['Root', 'đến', '?']	[]	(punc, đến, ?)
+
+(rtimemod, máy_bay, của) (rtimemod, của, hãng) (rtimemod, hãng, hàng_không) (rtimemod, hàng_không, vietjet_air) (subj, bay, máy_bay) (root, Root, bay) (root, Root, đến) (rtimemod, đến, những) (dobj, đến, thành_phố) (whmod, thành_phố, nào) (punc, đến, ?)
+------------------------------
+
+
+---- Grammartical Relation ----
+(s1 WHQUERY (WHICH t1 THÀNH_PHỐ))
+(s1 PRED BAY)
+(s1 PRED ĐẾN)
+(s1 LSUBJ MÁY_BAY)
+(s1 LOBJ thành_phố)
+(s1 RUN_TIME CỦA)
+(s1 RUN_TIME HÃNG)
+(s1 RUN_TIME HÀNG_KHÔNG)
+(s1 RUN_TIME VIETJET_AIR)
+(s1 RUN_TIME NHỮNG)
+-------------------------------
+
+
+-------- Logical Form --------
+(WH QUERY(& (BAY s1) (ĐẾN s1) (AGENT s1 MÁY_BAY) (THEME s1 thành_phố) (RUN_TIME s1 CỦA) (RUN_TIME s1 HÃNG) (RUN_TIME s1 HÀNG_KHÔNG) (RUN_TIME s1 VIETJET_AIR) (RUN_TIME s1 NHỮNG)))
+------------------------------
+
+

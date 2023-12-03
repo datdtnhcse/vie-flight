@@ -1,62 +1,57 @@
-##### OUTPUT OF QUERY QUESTION 8 #####
+##### OUTPUT OF QUERY QUESTION 1 #####
 
 ----- Tokenize -----
-tàu_hỏa
-b3
-chạy
+có
+máy_bay
+nào
+xuất_phát
 từ
-hồ_chí_minh
-lúc
-10:00hr
-phải
+hải_phòng
 không
 ?
 ------------------------------
 
 
 ----- Dependency Parsing -----
-SHIFT	['Root', 'tàu_hỏa']	['b3', 'chạy', 'từ', 'hồ_chí_minh', 'lúc', '10:00hr', 'phải', 'không', '?']	
-RIGHTARC	['Root', 'tàu_hỏa', 'b3']	['chạy', 'từ', 'hồ_chí_minh', 'lúc', '10:00hr', 'phải', 'không', '?']	(idmod, tàu_hỏa, b3)
-REDUCE	['Root', 'tàu_hỏa']	['chạy', 'từ', 'hồ_chí_minh', 'lúc', '10:00hr', 'phải', 'không', '?']	
-LEFTARC	['Root']	['chạy', 'từ', 'hồ_chí_minh', 'lúc', '10:00hr', 'phải', 'không', '?']	(subj, chạy, tàu_hỏa)
-RIGHTARC	['Root', 'chạy']	['từ', 'hồ_chí_minh', 'lúc', '10:00hr', 'phải', 'không', '?']	(root, Root, chạy)
-RIGHTARC	['Root', 'chạy', 'từ']	['hồ_chí_minh', 'lúc', '10:00hr', 'phải', 'không', '?']	(pmod, chạy, từ)
-RIGHTARC	['Root', 'chạy', 'từ', 'hồ_chí_minh']	['lúc', '10:00hr', 'phải', 'không', '?']	(pobj, từ, hồ_chí_minh)
-REDUCE	['Root', 'chạy', 'từ']	['lúc', '10:00hr', 'phải', 'không', '?']	
-REDUCE	['Root', 'chạy']	['lúc', '10:00hr', 'phải', 'không', '?']	
-RIGHTARC	['Root', 'chạy', 'lúc']	['10:00hr', 'phải', 'không', '?']	(aux, chạy, lúc)
-RIGHTARC	['Root', 'chạy', 'lúc', '10:00hr']	['phải', 'không', '?']	(rtimemod, lúc, 10:00hr)
-REDUCE	['Root', 'chạy', 'lúc']	['phải', 'không', '?']	
-REDUCE	['Root', 'chạy']	['phải', 'không', '?']	
-RIGHTARC	['Root', 'chạy', 'phải']	['không', '?']	(aux, chạy, phải)
-REDUCE	['Root', 'chạy']	['không', '?']	
-RIGHTARC	['Root', 'chạy', 'không']	['?']	(aux, chạy, không)
-REDUCE	['Root', 'chạy']	['?']	
-RIGHTARC	['Root', 'chạy', '?']	[]	(punc, chạy, ?)
+SHIFT	['Root', 'có']	['máy_bay', 'nào', 'xuất_phát', 'từ', 'hải_phòng', 'không', '?']
+RIGHTARC	['Root', 'có', 'máy_bay']	['nào', 'xuất_phát', 'từ', 'hải_phòng', 'không', '?']	(nmod, có, máy_bay)
+RIGHTARC	['Root', 'có', 'máy_bay', 'nào']	['xuất_phát', 'từ', 'hải_phòng', 'không', '?']	(whmod, máy_bay, nào)
+REDUCE	['Root', 'có', 'máy_bay']	['xuất_phát', 'từ', 'hải_phòng', 'không', '?']
+LEFTARC	['Root', 'có']	['xuất_phát', 'từ', 'hải_phòng', 'không', '?']	(subj, xuất_phát, máy_bay)
+LEFTARC	['Root']	['xuất_phát', 'từ', 'hải_phòng', 'không', '?']	(aux, xuất_phát, có)
+RIGHTARC	['Root', 'xuất_phát']	['từ', 'hải_phòng', 'không', '?']	(root, Root, xuất_phát)
+RIGHTARC	['Root', 'xuất_phát', 'từ']	['hải_phòng', 'không', '?']	(pmod, xuất_phát, từ)
+RIGHTARC	['Root', 'xuất_phát', 'từ', 'hải_phòng']	['không', '?']	(pobj, từ, hải_phòng)
+REDUCE	['Root', 'xuất_phát', 'từ']	['không', '?']
+REDUCE	['Root', 'xuất_phát']	['không', '?']
+RIGHTARC	['Root', 'xuất_phát', 'không']	['?']	(aux, xuất_phát, không)
+REDUCE	['Root', 'xuất_phát']	['?']
+RIGHTARC	['Root', 'xuất_phát', '?']	[]	(punc, xuất_phát, ?)
 
-(idmod, tàu_hỏa, b3) (subj, chạy, tàu_hỏa) (root, Root, chạy) (pmod, chạy, từ) (pobj, từ, hồ_chí_minh) (aux, chạy, lúc) (rtimemod, lúc, 10:00hr) (aux, chạy, phải) (aux, chạy, không) (punc, chạy, ?)
+(nmod, có, máy_bay) (whmod, máy_bay, nào) (subj, xuất_phát, máy_bay) (aux, xuất_phát, có) (root, Root, xuất_phát) (pmod, xuất_phát, từ) (pobj, từ, hải_phòng) (aux, xuất_phát, không) (punc, xuất_phát, ?)
 ------------------------------
 
 
 ---- Grammartical Relation ----
-(s1 YNQUERY CHẠY)
-(s1 PRED CHẠY)
-(s1 LSUBJ (ID B3 TÀU_HỎA))
-(s1 PFROM (NAME h1 "HỒ_CHÍ_MINH"))
-(s1 RUN_TIME 10:00HR)
+(s1 WHQUERY (WHICH m1 MÁY_BAY))
+(s1 YNQUERY XUẤT_PHÁT)
+(s1 PRED XUẤT_PHÁT)
+(s1 LSUBJ MÁY_BAY)
+(CÓ NMOD MÁY_BAY)
+(s1 PFROM (NAME h1 "HẢI_PHÒNG"))
 -------------------------------
 
 
 -------- Logical Form --------
-(YS QUERY(& (CHẠY s1) (EXPERIENCER s1 (ID B3 TÀU_HỎA)) (FROM_LOC fl s1 (NAME h1 "HỒ_CHÍ_MINH")) (RUN_TIME s1 10:00HR)))
+(YS QUERY(& (XUẤT_PHÁT s1) (EXPERIENCER s1 (WHICH m1 MÁY_BAY)) (NMOD CÓ (WHICH m1 MÁY_BAY)) (FROM_LOC fl s1 (NAME h1 "HẢI_PHÒNG"))))
 ------------------------------
 
 
 ----- Procedure Semantics -----
-(YES-NO (RUN-TIME B3 HCM ?d ?rt))
+(YES-NO (DTIME ?f HP ?st))
 -------------------------------
 
 
 ------ Procedure Execute ------
-Có. 
+Không.
 -------------------------------

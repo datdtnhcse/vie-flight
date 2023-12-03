@@ -1,64 +1,46 @@
-##### OUTPUT OF QUERY QUESTION 7 #####
+##### OUTPUT OF QUERY QUESTION 1 #####
 
 ----- Tokenize -----
-có
-tàu_hỏa
-nào
-chạy
+thời_gian
+máy_bay
+vj5
+bay
 từ
-huế
+thành_phố
+hà_nội
 đến
-đà_nẵng
-không
+khánh_hòa
+mất
+mấy_giờ
 ?
 ------------------------------
 
 
 ----- Dependency Parsing -----
-SHIFT	['Root', 'có']	['tàu_hỏa', 'nào', 'chạy', 'từ', 'huế', 'đến', 'đà_nẵng', 'không', '?']	
-RIGHTARC	['Root', 'có', 'tàu_hỏa']	['nào', 'chạy', 'từ', 'huế', 'đến', 'đà_nẵng', 'không', '?']	(nmod, có, tàu_hỏa)
-RIGHTARC	['Root', 'có', 'tàu_hỏa', 'nào']	['chạy', 'từ', 'huế', 'đến', 'đà_nẵng', 'không', '?']	(whmod, tàu_hỏa, nào)
-REDUCE	['Root', 'có', 'tàu_hỏa']	['chạy', 'từ', 'huế', 'đến', 'đà_nẵng', 'không', '?']	
-LEFTARC	['Root', 'có']	['chạy', 'từ', 'huế', 'đến', 'đà_nẵng', 'không', '?']	(subj, chạy, tàu_hỏa)
-LEFTARC	['Root']	['chạy', 'từ', 'huế', 'đến', 'đà_nẵng', 'không', '?']	(aux, chạy, có)
-RIGHTARC	['Root', 'chạy']	['từ', 'huế', 'đến', 'đà_nẵng', 'không', '?']	(root, Root, chạy)
-RIGHTARC	['Root', 'chạy', 'từ']	['huế', 'đến', 'đà_nẵng', 'không', '?']	(pmod, chạy, từ)
-RIGHTARC	['Root', 'chạy', 'từ', 'huế']	['đến', 'đà_nẵng', 'không', '?']	(pobj, từ, huế)
-REDUCE	['Root', 'chạy', 'từ']	['đến', 'đà_nẵng', 'không', '?']	
-REDUCE	['Root', 'chạy']	['đến', 'đà_nẵng', 'không', '?']	
-RIGHTARC	['Root', 'chạy', 'đến']	['đà_nẵng', 'không', '?']	(pmod, chạy, đến)
-RIGHTARC	['Root', 'chạy', 'đến', 'đà_nẵng']	['không', '?']	(pobj, đến, đà_nẵng)
-REDUCE	['Root', 'chạy', 'đến']	['không', '?']	
-REDUCE	['Root', 'chạy']	['không', '?']	
-RIGHTARC	['Root', 'chạy', 'không']	['?']	(aux, chạy, không)
-REDUCE	['Root', 'chạy']	['?']	
-RIGHTARC	['Root', 'chạy', '?']	[]	(punc, chạy, ?)
+SHIFT	['Root', 'thời_gian']	['máy_bay', 'vj5', 'bay', 'từ', 'thành_phố', 'hà_nội', 'đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']
+RIGHTARC	['Root', 'thời_gian', 'máy_bay']	['vj5', 'bay', 'từ', 'thành_phố', 'hà_nội', 'đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']	(nmod, thời_gian, máy_bay)
+RIGHTARC	['Root', 'thời_gian', 'máy_bay', 'vj5']	['bay', 'từ', 'thành_phố', 'hà_nội', 'đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']	(namemod, máy_bay, vj5)
+REDUCE	['Root', 'thời_gian', 'máy_bay']	['bay', 'từ', 'thành_phố', 'hà_nội', 'đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']
+REDUCE	['Root', 'thời_gian']	['bay', 'từ', 'thành_phố', 'hà_nội', 'đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']
+LEFTARC	['Root']	['bay', 'từ', 'thành_phố', 'hà_nội', 'đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']	(subj, bay, thời_gian)
+RIGHTARC	['Root', 'bay']	['từ', 'thành_phố', 'hà_nội', 'đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']	(root, Root, bay)
+RIGHTARC	['Root', 'bay', 'từ']	['thành_phố', 'hà_nội', 'đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']	(pmod, bay, từ)
+RIGHTARC	['Root', 'bay', 'từ', 'thành_phố']	['hà_nội', 'đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']	(pobj, từ, thành_phố)
+RIGHTARC	['Root', 'bay', 'từ', 'thành_phố', 'hà_nội']	['đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']	(namemod, thành_phố, hà_nội)
+REDUCE	['Root', 'bay', 'từ', 'thành_phố']	['đến', 'khánh_hòa', 'mất', 'mấy_giờ', '?']
+RIGHTARC	['Root', 'bay', 'từ', 'thành_phố', 'đến']	['khánh_hòa', 'mất', 'mấy_giờ', '?']	(timemod, thành_phố, đến)
+RIGHTARC	['Root', 'bay', 'từ', 'thành_phố', 'đến', 'khánh_hòa']	['mất', 'mấy_giờ', '?']	(pobj, đến, khánh_hòa)
+REDUCE	['Root', 'bay', 'từ', 'thành_phố', 'đến']	['mất', 'mấy_giờ', '?']
+REDUCE	['Root', 'bay', 'từ', 'thành_phố']	['mất', 'mấy_giờ', '?']
+RIGHTARC	['Root', 'bay', 'từ', 'thành_phố', 'mất']	['mấy_giờ', '?']	(timemod, thành_phố, mất)
+RIGHTARC	['Root', 'bay', 'từ', 'thành_phố', 'mất', 'mấy_giờ']	['?']	(whmod, mất, mấy_giờ)
+REDUCE	['Root', 'bay', 'từ', 'thành_phố', 'mất']	['?']
+REDUCE	['Root', 'bay', 'từ', 'thành_phố']	['?']
+REDUCE	['Root', 'bay', 'từ']	['?']
+REDUCE	['Root', 'bay']	['?']
+RIGHTARC	['Root', 'bay', '?']	[]	(punc, bay, ?)
 
-(nmod, có, tàu_hỏa) (whmod, tàu_hỏa, nào) (subj, chạy, tàu_hỏa) (aux, chạy, có) (root, Root, chạy) (pmod, chạy, từ) (pobj, từ, huế) (pmod, chạy, đến) (pobj, đến, đà_nẵng) (aux, chạy, không) (punc, chạy, ?)
+(nmod, thời_gian, máy_bay) (namemod, máy_bay, vj5) (subj, bay, thời_gian) (root, Root, bay) (pmod, bay, từ) (pobj, từ, thành_phố) (namemod, thành_phố, hà_nội) (timemod, thành_phố, đến) (pobj, đến, khánh_hòa) (timemod, thành_phố, mất) (whmod, mất, mấy_giờ) (punc, bay, ?)
 ------------------------------
 
 
----- Grammartical Relation ----
-(s1 WHQUERY (WHICH t1 TÀU_HỎA))
-(s1 YNQUERY CHẠY)
-(s1 PRED CHẠY)
-(s1 LSUBJ TÀU_HỎA)
-(s1 PTO (NAME đ1 "ĐÀ_NẴNG"))
-(CÓ NMOD TÀU_HỎA)
-(s1 PFROM (NAME h1 "HUẾ"))
--------------------------------
-
-
--------- Logical Form --------
-(YS QUERY(& (CHẠY s1) (EXPERIENCER s1 (WHICH t1 TÀU_HỎA)) (TO_LOC tl s1 (NAME đ1 "ĐÀ_NẴNG")) (NMOD CÓ (WHICH t1 TÀU_HỎA)) (FROM_LOC fl s1 (NAME h1 "HUẾ"))))
-------------------------------
-
-
------ Procedure Semantics -----
-(YES-NO (ATIME ?t DANANG ?dt) (DTIME ?t HUE ?st))
--------------------------------
-
-
------- Procedure Execute ------
-Không. 
--------------------------------

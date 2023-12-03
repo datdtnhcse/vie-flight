@@ -1,56 +1,66 @@
-##### OUTPUT OF QUERY QUESTION 4 #####
+##### OUTPUT OF QUERY QUESTION 1 #####
 
 ----- Tokenize -----
-tàu_hỏa
+máy_bay
 nào
-đến
+xuất_phát
+từ
 thành_phố
-huế
+hồ_chí_minh
+,
 lúc
-19:00hr
+mấy_giờ
 ?
 ------------------------------
 
 
 ----- Dependency Parsing -----
-SHIFT	['Root', 'tàu_hỏa']	['nào', 'đến', 'thành_phố', 'huế', 'lúc', '19:00hr', '?']	
-RIGHTARC	['Root', 'tàu_hỏa', 'nào']	['đến', 'thành_phố', 'huế', 'lúc', '19:00hr', '?']	(whmod, tàu_hỏa, nào)
-REDUCE	['Root', 'tàu_hỏa']	['đến', 'thành_phố', 'huế', 'lúc', '19:00hr', '?']	
-LEFTARC	['Root']	['đến', 'thành_phố', 'huế', 'lúc', '19:00hr', '?']	(subj, đến, tàu_hỏa)
-RIGHTARC	['Root', 'đến']	['thành_phố', 'huế', 'lúc', '19:00hr', '?']	(root, Root, đến)
-RIGHTARC	['Root', 'đến', 'thành_phố']	['huế', 'lúc', '19:00hr', '?']	(dobj, đến, thành_phố)
-RIGHTARC	['Root', 'đến', 'thành_phố', 'huế']	['lúc', '19:00hr', '?']	(namemod, thành_phố, huế)
-REDUCE	['Root', 'đến', 'thành_phố']	['lúc', '19:00hr', '?']	
-REDUCE	['Root', 'đến']	['lúc', '19:00hr', '?']	
-RIGHTARC	['Root', 'đến', 'lúc']	['19:00hr', '?']	(aux, đến, lúc)
-RIGHTARC	['Root', 'đến', 'lúc', '19:00hr']	['?']	(timemod, lúc, 19:00hr)
-REDUCE	['Root', 'đến', 'lúc']	['?']	
-REDUCE	['Root', 'đến']	['?']	
-RIGHTARC	['Root', 'đến', '?']	[]	(punc, đến, ?)
+SHIFT	['Root', 'máy_bay']	['nào', 'xuất_phát', 'từ', 'thành_phố', 'hồ_chí_minh', ',', 'lúc', 'mấy_giờ', '?']
+RIGHTARC	['Root', 'máy_bay', 'nào']	['xuất_phát', 'từ', 'thành_phố', 'hồ_chí_minh', ',', 'lúc', 'mấy_giờ', '?']	(whmod, máy_bay, nào)
+REDUCE	['Root', 'máy_bay']	['xuất_phát', 'từ', 'thành_phố', 'hồ_chí_minh', ',', 'lúc', 'mấy_giờ', '?']
+LEFTARC	['Root']	['xuất_phát', 'từ', 'thành_phố', 'hồ_chí_minh', ',', 'lúc', 'mấy_giờ', '?']	(subj, xuất_phát, máy_bay)
+RIGHTARC	['Root', 'xuất_phát']	['từ', 'thành_phố', 'hồ_chí_minh', ',', 'lúc', 'mấy_giờ', '?']	(root, Root, xuất_phát)
+RIGHTARC	['Root', 'xuất_phát', 'từ']	['thành_phố', 'hồ_chí_minh', ',', 'lúc', 'mấy_giờ', '?']	(pmod, xuất_phát, từ)
+RIGHTARC	['Root', 'xuất_phát', 'từ', 'thành_phố']	['hồ_chí_minh', ',', 'lúc', 'mấy_giờ', '?']	(pobj, từ, thành_phố)
+RIGHTARC	['Root', 'xuất_phát', 'từ', 'thành_phố', 'hồ_chí_minh']	[',', 'lúc', 'mấy_giờ', '?']	(namemod, thành_phố, hồ_chí_minh)
+REDUCE	['Root', 'xuất_phát', 'từ', 'thành_phố']	[',', 'lúc', 'mấy_giờ', '?']
+REDUCE	['Root', 'xuất_phát', 'từ']	[',', 'lúc', 'mấy_giờ', '?']
+REDUCE	['Root', 'xuất_phát']	[',', 'lúc', 'mấy_giờ', '?']
+RIGHTARC	['Root', 'xuất_phát', ',']	['lúc', 'mấy_giờ', '?']	(punc, xuất_phát, ,)
+REDUCE	['Root', 'xuất_phát']	['lúc', 'mấy_giờ', '?']
+RIGHTARC	['Root', 'xuất_phát', 'lúc']	['mấy_giờ', '?']	(aux, xuất_phát, lúc)
+RIGHTARC	['Root', 'xuất_phát', 'lúc', 'mấy_giờ']	['?']	(whmod, lúc, mấy_giờ)
+REDUCE	['Root', 'xuất_phát', 'lúc']	['?']
+REDUCE	['Root', 'xuất_phát']	['?']
+RIGHTARC	['Root', 'xuất_phát', '?']	[]	(punc, xuất_phát, ?)
 
-(whmod, tàu_hỏa, nào) (subj, đến, tàu_hỏa) (root, Root, đến) (dobj, đến, thành_phố) (namemod, thành_phố, huế) (aux, đến, lúc) (timemod, lúc, 19:00hr) (punc, đến, ?)
+(whmod, máy_bay, nào) (subj, xuất_phát, máy_bay) (root, Root, xuất_phát) (pmod, xuất_phát, từ) (pobj, từ, thành_phố) (namemod, thành_phố, hồ_chí_minh) (punc, xuất_phát, ,) (aux, xuất_phát, lúc) (whmod, lúc, mấy_giờ) (punc, xuất_phát, ?)
 ------------------------------
 
 
 ---- Grammartical Relation ----
-(s1 WHQUERY (WHICH t1 TÀU_HỎA))
-(s1 PRED ĐẾN)
-(s1 LSUBJ TÀU_HỎA)
-(s1 LOBJ (NAME h1 "HUẾ"))
-(s1 TIME 19:00HR)
+(s1 WHQUERY (WHICH m1 MÁY_BAY))
+(s1 WHQUERY (WHEN s1 TIME))
+(s1 PRED XUẤT_PHÁT)
+(s1 LSUBJ MÁY_BAY)
+(s1 PFROM (NAME h1 "HỒ_CHÍ_MINH"))
 -------------------------------
 
 
 -------- Logical Form --------
-(WH QUERY(& (ĐẾN s1) (AGENT s1 (WHICH t1 TÀU_HỎA)) (THEME s1 (NAME h1 "HUẾ")) (AT_TIME s1 19:00HR)))
+(WH QUERY(& (AT_TIME s1 (WHEN s1 TIME)) (XUẤT_PHÁT s1) (EXPERIENCER s1 (WHICH m1 MÁY_BAY)) (FROM_LOC fl s1 (NAME h1 "HỒ_CHÍ_MINH"))))
 ------------------------------
 
 
 ----- Procedure Semantics -----
-(PRINT-ALL ?t (TRAIN ?t) (ATIME ?t HUE 19:00HR))
+(PRINT-ALL ?f (FLIGHT ?f) ?st (STIME ?st) (DTIME ?f HCM ?st))
 -------------------------------
 
 
 ------ Procedure Execute ------
-Tàu hỏa B1. 
+Máy bay VJ4.
+Máy bay VN3.
+Máy bay VJ3.
+Máy bay VN1.
+Máy bay VN5.
 -------------------------------

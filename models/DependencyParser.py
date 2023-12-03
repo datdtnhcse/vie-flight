@@ -21,8 +21,9 @@ class DependencyParser(NLP):
         """ MaltParser arc-eager """
 
         while len(self.buffer) > 0:
-            print("buffer",self.buffer)
-            print("stack",self.stack)
+            print('buffer',self.buffer)
+            print('stack',self.stack)
+
             token = self.buffer[0]
             word = self.stack[-1]
             op, relation = self.__selectOp(word[1], token[1])
@@ -95,7 +96,8 @@ class DependencyParser(NLP):
             elif not list(filter(lambda x: "root" in x, self.relations)):
                 return self.SHIFT, None
         elif buffType == "Time":
-            if stackType == "Aux" and (len(self.stack) < 2):
+            # if stackType == "Aux" and (len(self.stack) < 2):
+            if stackType == "Aux":
                 return self.RIGHTARC, "timemod"
             else:
                 return self.RIGHTARC, "rtimemod"

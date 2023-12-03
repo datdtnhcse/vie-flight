@@ -26,8 +26,10 @@ DICTIONARY = {
     "thành_phố": "Noun",
     "nào": "WH",
     "đến": ("OVerb", "Prep"),
+    "xuất_phát": ("OVerb", "Prep"),
     "mấy_giờ": "WH",
     "chạy": "IVerb",
+    "bay" : "IVerb",
     "từ": "Prep",
     "mất": ("Aux", "Prep"),
     "phải": "Aux",
@@ -38,6 +40,16 @@ DICTIONARY = {
     ",": "Punc",
     "?": "Punc",
     ".": "Punc",
+    "vn1" : "Name",
+    "vn2" : "Name",
+    "vn3" : "Name",
+    "vn4" : "Name",
+    "vn5" : "Name",
+    "vj1" : "Name",
+    "vj2" : "Name",
+    "vj3" : "Name",
+    "vj4" : "Name",
+    "vj5" : "Name",
 }
 
 PLACE = (
@@ -49,8 +61,10 @@ MAPPING = {
     "từ": "LEAVE",
     "đến": "ARRIVE",
     "chạy": "RUN",
+    "bay" : "FLY",
     "tàu_hỏa": "TRAIN",
     "máy_bay": "FLIGHT",
+    "xuất_phát":"LEAVE",
     "nào": "WHICH",
     "mấy_giờ": "TIME",
     "là": "WHAT",
@@ -61,10 +75,10 @@ MAPPING = {
     "huế": "HUE",
     "nha_trang": "NTRANG",
     "hà_nội": "HN",
-    "đà_nẵng": "DANANG",
+    "đà_nẵng": "ĐN",
     "hồ_chí_minh": "HCM",
-    "khánh_hòa" : "KHANHHOA",
-    "hải_phòng" : "HAIPHONG"
+    "khánh_hòa" : "KH",
+    "hải_phòng" : "HP",
 }
 
 class NLP(ABC):

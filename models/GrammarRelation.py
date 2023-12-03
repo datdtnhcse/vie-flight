@@ -92,4 +92,6 @@ class GrammarRelation(NLP):
         relations = "\n".join(relation for relation in self.gram_relation)
         relations = relations.replace("-", " ").replace("[", "(").replace("]", ")")
 
+
+
         return "---- Grammartical Relation ----\n" + relations + "\n-------------------------------\n\n\n"

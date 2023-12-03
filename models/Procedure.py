@@ -8,21 +8,22 @@ class Procedure(NLP):
     def __init__(self, logicalForm: List[str], mode: str) -> None:
         super().__init__()
         self.logicalForm = logicalForm
+        # print(logicalForm)
         self.mode = mode
         self.subj = []
         self.action = None
         self.varmap = {"TRAIN": "t", "STIME": "st", "DTIME": "dt", "RUN_TIME": "rt","FLIGHT":"f"}
-        self.variables = ["t", "st", "dt", "rt", "s", "d"]
-        self.runtime = [False, ["?t", "?s", "?d", "?rt"]]
-        self.atime = [False, ["?t", "?d", "?dt"]]
-        self.dtime = [False, ["?t", "?s", "?st"]]
+        self.variables = ["t","f", "st", "dt", "rt", "s", "d"]
+        self.runtime = [False, ["?f", "?s", "?d", "?rt"]]
+        self.atime = [False, ["?f", "?d", "?dt"]]
+        self.dtime = [False, ["?f", "?s", "?st"]]
 
 
     def transform(self) -> None:
         for relation in self.logicalForm:
             relation = regex.sub(r'[()"]', "", relation)
             tokens = relation.split()
-
+            # print(relation)
             if "ID" in relation:
                 tokens = tokens[2][1:-1].split('-')
                 self.atime[1][0] = tokens[1]
@@ -79,7 +80,8 @@ class Procedure(NLP):
                 elif self.action == "LEAVE":
                     self.dtime[1][1] = MAPPING[tokens[2].lower()]
 
-
+        # print(self.atime)
+        # print(self.dtime)
     def execute(self) -> str:
         result = ""
         io = IO.getInstance()
@@ -91,6 +93,12 @@ class Procedure(NLP):
         ids = set(map(lambda x: x.split()[1], io.queryDatabase("flight")))
         if self.atime[0]:
             atime = io.queryDatabase("atime", *self.atime[1])
+            # print("======")
+            # print(self.atime[1])
+            # print(atime)
+            # print(set(map(lambda x: x.split()[1], atime)))
+            # print(ids)
+            # print("======")
             ids = ids.intersection(set(map(lambda x: x.split()[1], atime)))
         if self.dtime[0]:
             dtime = io.queryDatabase("dtime", *self.dtime[1])
@@ -98,7 +106,13 @@ class Procedure(NLP):
         if self.runtime[0]:
             runtime = io.queryDatabase("rtime", *self.runtime[1])
             ids = ids.intersection(set(map(lambda x: x.split()[1], runtime)))
-
+        print("===")
+        print(atime)
+        print(dtime)
+        print(self.mode)
+        print(ids)
+        print("===")
+        # print(self.subj)
         if self.mode == "WH":
             for id in ids:
                 for subj in self.subj:
@@ -109,7 +123,7 @@ class Procedure(NLP):
                     elif subj == "RUN_TIME":
                         time = [ele.split()[4] for ele in runtime if id in ele][0]
                         result += "Thời gian chạy là {}. ".format(time)
-                    elif subj == "STIME":
+                    elif subj == "ATIME":
                         time = [ele.split()[3] for ele in dtime if id in ele][0]
                         result += "Chạy lúc {}. ".format(time)
                     elif subj == "DTIME":
@@ -121,7 +135,7 @@ class Procedure(NLP):
             result += "Có. \n" if ids else "Không. \n"
 
         if result == "":
-            result = "Không tồn tại chuyến tàu thỏa yêu cầu. \n"
+            result = "Không tồn tại chuyến bay thỏa yêu cầu. \n"
 
         return "------ Procedure Execute ------\n" + result + "-------------------------------"
 
@@ -138,7 +152,6 @@ class Procedure(NLP):
 
         if self.mode == "WH":
             prefix = "PRINT-ALL "
-
             for subj in self.subj:
                 var = self.varmap[subj]
                 prefix += "?{} ({} ?{}) ".format(var, subj, var)

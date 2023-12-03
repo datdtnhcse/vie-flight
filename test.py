@@ -13,8 +13,8 @@
 
 
 # -*- coding: utf-8 -*-
-# from underthesea import pos_tag
-# print(pos_tag('Máy bay nào bay từ Đà Nẵng đến Hồ Chí Minh mất một giờ'))
+from underthesea import pos_tag
+print(pos_tag('Máy bay nào bay từ Đà Nẵng đến Hồ Chí Minh mất một giờ'))
 
 import os
 

@@ -14,14 +14,14 @@ def main() -> None:
     preprocess = PreProcessing.getInstance()
     process = Process.getInstance()
 
-    # sentences = io.loadData("Input/question/")
+    # sentences = io.loadData("Input/question_flight/")
     sentences = io.loadData("Input/q_test/")
 
     for i, text in enumerate(sentences):
         tokens = preprocess.tokenize(text)
         types = preprocess.getWordTypes(tokens)
 
-        output_file = f"Output_flight/output_{i+1}.txt"
+        output_file = f"Output/output_{i+1}.txt"
         io.writeData(output_file, "w+", f"##### OUTPUT OF QUERY QUESTION {i+1} #####\n\n")
 
         io.writeData(output_file, "a+", f"----- Tokenize -----\n")

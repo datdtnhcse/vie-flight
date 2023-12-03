@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 from Models.IO import *
 
 PHARSE = (
-    ("hcmc","tp. hồ_chí_minh"),
+    ("tàu hỏa", "tàu_hỏa"),
     ("thời gian", "thời_gian"),
     ("thành phố", "thành_phố"),
     ("tp.", "thành_phố "),
@@ -12,9 +12,7 @@ PHARSE = (
     ("nha trang", "nha_trang"),
     ("hồ chí minh", "hồ_chí_minh"),
     ("hà nội", "hà_nội"),
-    ("mấy giờ", "mấy_giờ"),
-    ("hải_phòng_","hải_phòng " ),
-    ("khánh hòa","khánh_hòa")
+    ("mấy giờ", "mấy_giờ")
 )
 
 
@@ -28,8 +26,6 @@ DICTIONARY = {
     "mấy_giờ": "WH",
     "chạy": "IVerb",
     "từ": "Prep",
-    "mất": ("Aux", "Prep"),
-    "phải": "Aux",
     "là": "Aux",
     "lúc": "Aux",
     "không": "Aux",
@@ -54,7 +50,6 @@ MAPPING = {
     "nào": "WHICH",
     "mấy_giờ": "TIME",
     "là": "WHAT",
-    "mất": "WHILE",
     "lúc": "WHEN",
     "có": "YESNO",
     "không": "YESNO",

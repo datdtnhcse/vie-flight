@@ -47,6 +47,8 @@ class LogicalForm(NLP):
                     self.logicalForm.append("(AT_TIME {} {})".format(tokens[0], tokens[2]))
                 elif "WHAT" in relation and "TIME" in relation:
                     self.logicalForm.append("(RUN_TIME {} {})".format(tokens[0], tokens[2]))
+            elif "RUN_TIME" in relation:
+                    self.logicalForm.append("(RUN_TIME {} {})".format(tokens[0], tokens[2]))
             elif "YNQUERY" in relation:
                 self.mode = "YN"
             elif "TIME" in relation:

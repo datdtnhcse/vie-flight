@@ -172,7 +172,7 @@ class Process:
             elif buffType == "Time":
                 if stackType == "Aux" and (len(self.stack) < 2):
                     return self.RIGHTARC, "timemod"
-                else: 
+                else:
                     return self.RIGHTARC, "rtimemod"
             elif buffType == "ID":
                 if stackType == "Noun":
@@ -225,7 +225,7 @@ class Process:
                 elif "idmod" in relations[i]:
                     tokens = relations[i].split()
                     relations = [relation.replace(tokens[1], "[ID-{}-{}]".format(tokens[2], tokens[1])) for relation in relations]
-             
+
             self.dep_relation = relations
             self.gram_relation = list()
 
@@ -236,7 +236,7 @@ class Process:
                 if transformRelation:
                     if transformRelation not in self.gram_relation:
                         self.gram_relation.append(transformRelation)
-            
+
             # self.gram_relation = list(set(self.gram_relation))
             # print(self.gram_relation)
             query = list(filter(lambda x: "QUERY" in x, self.gram_relation))
@@ -415,7 +415,7 @@ class Process:
                         self.atime[1][2] = tokens[2]
                     elif self.action == "LEAVE":
                         self.dtime[1][2] = tokens[2]
-                
+
                 elif len(tokens) == 2:
                     self.action = MAPPING[tokens[0].lower()]
                     if self.action == "ARRIVE":

@@ -8,7 +8,7 @@ class IO:
     def getInstance():
         if not IO.instance:
             IO.instance = IO()
-        
+
         return IO.instance
 
 
@@ -25,10 +25,10 @@ class IO:
 
         return data
 
-    
+
     def queryDatabase(self, database: str, *filterData) -> List[str]:
         data = None
-        with open('Input/database/{}.txt'.format(database), "r", encoding='utf8') as f:
+        with open('Input/database_flight/{}.txt'.format(database), "r", encoding='utf8') as f:
             data = f.readlines()
 
         for key in filterData:

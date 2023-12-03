@@ -10,7 +10,6 @@ class GrammarRelation(NLP):
         self.variable = ["s1"]
         for i in range(len(relations)):
             relations[i] = regex.sub(r'[,()]', "", relations[i])
-
             if "namemod" in relations[i]:
                 tokens = relations[i].split()
                 name = ("[NAME-{}-\"{}\"]".format(super().createVariable(tokens[2][0]), tokens[2].upper()))
@@ -36,17 +35,18 @@ class GrammarRelation(NLP):
                 relations = [relation.replace(tokens[1], "[ID-{}-{}]".format(tokens[2], tokens[1])) for relation in relations]
 
         self.dep_relation = relations
-        self.gram_relation = set()
+        self.gram_relation = list()
 
 
     def transform(self) -> List[str]:
         for relation in self.dep_relation:
             transformRelation = self.__relationTransform(relation)
-
             if transformRelation:
-                self.gram_relation.add(transformRelation)
+                if transformRelation not in self.gram_relation:
+                    self.gram_relation.append(transformRelation)
 
-        self.gram_relation = list(self.gram_relation)
+        # self.gram_relation = list(set(self.gram_relation))
+        # print(self.gram_relation)
         query = list(filter(lambda x: "QUERY" in x, self.gram_relation))
         pred = list(filter(lambda x: "PRED" in x, self.gram_relation))
         subj = list(filter(lambda x: "LSUBJ" in x, self.gram_relation))
@@ -68,6 +68,8 @@ class GrammarRelation(NLP):
             result = "({} LOBJ {})".format("s1", relation[2])
         elif "timemod" in relation:
             result = "({} TIME {})".format("s1", relation[2].upper())
+        elif "rtimemod" in relation:
+            result = "({} RUN_TIME {})".format("s1", relation[2].upper())
         elif "whmod" in relation:
             if MAPPING[relation[2]] == "WHICH":
                 result = "({} WHQUERY [WHICH-{}-{}])".format("s1", self.createVariable(relation[1][0]), relation[1].upper())

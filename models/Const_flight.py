@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 from Models.IO import *
 
 PHARSE = (
-    ("tàu hỏa", "tàu_hỏa"),
+    ("hcmc","tp. hồ_chí_minh"),
     ("thời gian", "thời_gian"),
     ("thành phố", "thành_phố"),
     ("tp.", "thành_phố "),
@@ -12,13 +12,16 @@ PHARSE = (
     ("nha trang", "nha_trang"),
     ("hồ chí minh", "hồ_chí_minh"),
     ("hà nội", "hà_nội"),
-    ("mấy giờ", "mấy_giờ")
+    ("mấy giờ", "mấy_giờ"),
+    ("hải_phòng_","hải_phòng " ),
+    ("khánh hòa","khánh_hòa")
 )
 
 
 DICTIONARY = {
     "Root": "Root",
     "tàu_hỏa" : "Noun",
+    "máy_bay" : "Noun",
     "thời_gian": "Noun",
     "thành_phố": "Noun",
     "nào": "WH",
@@ -26,6 +29,8 @@ DICTIONARY = {
     "mấy_giờ": "WH",
     "chạy": "IVerb",
     "từ": "Prep",
+    "mất": ("Aux", "Prep"),
+    "phải": "Aux",
     "là": "Aux",
     "lúc": "Aux",
     "không": "Aux",
@@ -35,11 +40,9 @@ DICTIONARY = {
     ".": "Punc",
 }
 
-
 PLACE = (
-    "hà_nội", "đà_nẵng", "hồ_chí_minh", "nha_trang", "huế",
+    "hà_nội", "đà_nẵng", "hồ_chí_minh", "khánh_hòa","hải_phòng","huế"
 )
-
 
 MAPPING = {
     "thời_gian": "TIME",
@@ -47,9 +50,11 @@ MAPPING = {
     "đến": "ARRIVE",
     "chạy": "RUN",
     "tàu_hỏa": "TRAIN",
+    "máy_bay": "FLIGHT",
     "nào": "WHICH",
     "mấy_giờ": "TIME",
     "là": "WHAT",
+    "mất": "WHILE",
     "lúc": "WHEN",
     "có": "YESNO",
     "không": "YESNO",
@@ -58,6 +63,8 @@ MAPPING = {
     "hà_nội": "HN",
     "đà_nẵng": "DANANG",
     "hồ_chí_minh": "HCM",
+    "khánh_hòa" : "KHANHHOA",
+    "hải_phòng" : "HAIPHONG"
 }
 
 class NLP(ABC):

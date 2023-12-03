@@ -2,13 +2,55 @@
 
 ----- Tokenize -----
 máy_bay
-vn4
-có
-xuất_phát
-từ
-đà_nẵng
-không
+nào
+đến
+thành_phố
+huế
+lúc
+13:30hr
 ?
 ------------------------------
 
 
+----- Dependency Parsing -----
+SHIFT	['Root', 'máy_bay']	['nào', 'đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	
+RIGHTARC	['Root', 'máy_bay', 'nào']	['đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	(whmod, máy_bay, nào)
+REDUCE	['Root', 'máy_bay']	['đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	
+LEFTARC	['Root']	['đến', 'thành_phố', 'huế', 'lúc', '13:30hr', '?']	(subj, đến, máy_bay)
+RIGHTARC	['Root', 'đến']	['thành_phố', 'huế', 'lúc', '13:30hr', '?']	(root, Root, đến)
+RIGHTARC	['Root', 'đến', 'thành_phố']	['huế', 'lúc', '13:30hr', '?']	(dobj, đến, thành_phố)
+RIGHTARC	['Root', 'đến', 'thành_phố', 'huế']	['lúc', '13:30hr', '?']	(namemod, thành_phố, huế)
+REDUCE	['Root', 'đến', 'thành_phố']	['lúc', '13:30hr', '?']	
+REDUCE	['Root', 'đến']	['lúc', '13:30hr', '?']	
+RIGHTARC	['Root', 'đến', 'lúc']	['13:30hr', '?']	(aux, đến, lúc)
+RIGHTARC	['Root', 'đến', 'lúc', '13:30hr']	['?']	(rtimemod, lúc, 13:30hr)
+REDUCE	['Root', 'đến', 'lúc']	['?']	
+REDUCE	['Root', 'đến']	['?']	
+RIGHTARC	['Root', 'đến', '?']	[]	(punc, đến, ?)
+
+(whmod, máy_bay, nào) (subj, đến, máy_bay) (root, Root, đến) (dobj, đến, thành_phố) (namemod, thành_phố, huế) (aux, đến, lúc) (rtimemod, lúc, 13:30hr) (punc, đến, ?)
+------------------------------
+
+
+---- Grammartical Relation ----
+(s1 WHQUERY (WHICH m1 MÁY_BAY))
+(s1 PRED ĐẾN)
+(s1 LSUBJ MÁY_BAY)
+(s1 LOBJ (NAME h1 "HUẾ"))
+(s1 RUN_TIME 13:30HR)
+-------------------------------
+
+
+-------- Logical Form --------
+(WH QUERY(& (ĐẾN s1) (AGENT s1 (WHICH m1 MÁY_BAY)) (THEME s1 (NAME h1 "HUẾ")) (RUN_TIME s1 13:30HR)))
+------------------------------
+
+
+----- Procedure Semantics -----
+(PRINT-ALL ?f (FLIGHT ?f) (RUN-TIME ?t ?s ?d ?rt))
+-------------------------------
+
+
+------ Procedure Execute ------
+Không tồn tại chuyến tàu thỏa yêu cầu. 
+-------------------------------

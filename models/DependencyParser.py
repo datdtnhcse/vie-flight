@@ -17,11 +17,12 @@ class DependencyParser(NLP):
         self.stack = [("Root", "Root")]
         self.buffer = list(zip(tokens, types))
 
-
     def transform(self) -> List[str]:
         """ MaltParser arc-eager """
 
         while len(self.buffer) > 0:
+            print("buffer",self.buffer)
+            print("stack",self.stack)
             token = self.buffer[0]
             word = self.stack[-1]
             op, relation = self.__selectOp(word[1], token[1])
@@ -86,14 +87,18 @@ class DependencyParser(NLP):
         elif buffType == "Prep":
             if stackType == "IVerb" or stackType == "OVerb":
                 return self.RIGHTARC, "pmod"
+            elif stackType == "Noun":
+                return self.RIGHTARC, "timemod"
         elif buffType == "Aux":
             if stackType == "IVerb" or stackType == "OVerb":
                 return self.RIGHTARC, "aux"
             elif not list(filter(lambda x: "root" in x, self.relations)):
                 return self.SHIFT, None
         elif buffType == "Time":
-            if stackType == "Aux":
+            if stackType == "Aux" and (len(self.stack) < 2):
                 return self.RIGHTARC, "timemod"
+            else:
+                return self.RIGHTARC, "rtimemod"
         elif buffType == "ID":
             if stackType == "Noun":
                 return self.RIGHTARC, "idmod"

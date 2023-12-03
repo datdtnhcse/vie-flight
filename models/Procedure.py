@@ -11,7 +11,7 @@ class Procedure(NLP):
         self.mode = mode
         self.subj = []
         self.action = None
-        self.varmap = {"TRAIN": "t", "STIME": "st", "DTIME": "dt", "RUN_TIME": "rt"}
+        self.varmap = {"TRAIN": "t", "STIME": "st", "DTIME": "dt", "RUN_TIME": "rt","FLIGHT":"f"}
         self.variables = ["t", "st", "dt", "rt", "s", "d"]
         self.runtime = [False, ["?t", "?s", "?d", "?rt"]]
         self.atime = [False, ["?t", "?d", "?dt"]]
@@ -41,26 +41,33 @@ class Procedure(NLP):
                 else:
                     self.subj.append(subj)
             elif "FROM_LOC" in relation:
-                tokens = tokens[3][1:-1].split('-')
-                self.dtime[0] = True
-                self.dtime[1][1] = MAPPING[tokens[2].lower()]
-                if "TIME" in self.subj:
-                    self.subj.append("STIME")
-                    self.subj.remove("TIME")
-                self.runtime[1][1] = MAPPING[tokens[2].lower()]
+                if "TO_LOC" not in relation:
+                    tokens = tokens[3][1:-1].split('-')
+                    self.dtime[0] = True
+                    self.dtime[1][1] = MAPPING[tokens[2].lower()]
+                    if "TIME" in self.subj:
+                        self.subj.append("STIME")
+                        self.subj.remove("TIME")
+                    self.runtime[1][1] = MAPPING[tokens[2].lower()]
+            elif "RUN_TIME" in relation:
+                self.atime[0] = False
+                self.dtime[0] = False
+                self.runtime[0] = True
             elif "TO_LOC" in relation:
-                tokens = tokens[3][1:-1].split('-')
-                self.atime[0] = True
-                self.atime[1][1] = MAPPING[tokens[2].lower()]
-                if "TIME" in self.subj:
-                    self.subj.append("DTIME")
-                    self.subj.remove("TIME")
-                self.runtime[1][2] = MAPPING[tokens[2].lower()]
+                if "FROM_LOC" not in relation:
+                    tokens = tokens[3][1:-1].split('-')
+                    self.atime[0] = True
+                    self.atime[1][1] = MAPPING[tokens[2].lower()]
+                    if "TIME" in self.subj:
+                        self.subj.append("DTIME")
+                        self.subj.remove("TIME")
+                    self.runtime[1][2] = MAPPING[tokens[2].lower()]
             elif "AT_TIME" in relation:
                 if self.action == "ARRIVE":
                     self.atime[1][2] = tokens[2]
                 elif self.action == "LEAVE":
                     self.dtime[1][2] = tokens[2]
+
             elif len(tokens) == 2:
                 self.action = MAPPING[tokens[0].lower()]
                 if self.action == "ARRIVE":
@@ -81,7 +88,7 @@ class Procedure(NLP):
         dtime = None
         runtime = None
 
-        ids = set(map(lambda x: x.split()[1], io.queryDatabase("train")))
+        ids = set(map(lambda x: x.split()[1], io.queryDatabase("flight")))
         if self.atime[0]:
             atime = io.queryDatabase("atime", *self.atime[1])
             ids = ids.intersection(set(map(lambda x: x.split()[1], atime)))
@@ -97,6 +104,8 @@ class Procedure(NLP):
                 for subj in self.subj:
                     if subj == "TRAIN":
                         result += "Tàu hỏa {}. ".format(id)
+                    elif subj == "FLIGHT":
+                        result += "Máy bay {}. ".format(id)
                     elif subj == "RUN_TIME":
                         time = [ele.split()[4] for ele in runtime if id in ele][0]
                         result += "Thời gian chạy là {}. ".format(time)

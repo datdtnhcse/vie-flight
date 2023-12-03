@@ -1,19 +1,38 @@
-def get_questions(path):
-    """
-    This function reads the questions from the file and returns a list of
-    questions.
-    """
-    questions = []
-    with open(path, "r", encoding="utf-8") as file:
-        for line in file:
-            line = line.strip()
-            line = line.replace("\n", "")
-            questions.append(line)
-    return questions
+import os
+from typing import List
 
-def write_to_file(string, path):
-    """
-    This function writes the string to the file.
-    """
-    with open(path, "w", encoding="utf-8") as file:
-        file.write(string)
+class IO:
+    instance = None
+
+    @staticmethod
+    def getInstance():
+        if not IO.instance:
+            IO.instance = IO()
+        
+        return IO.instance
+
+
+    def writeData(self, file: str, mode: str, data: str) -> None:
+        with open(file, mode, encoding='utf8') as f:
+            f.write(data)
+
+
+    def loadData(self, folder: str) -> List[str]:
+        data = []
+        for file in os.listdir(folder):
+            with open(folder+file, "r", encoding='utf8') as f:
+                data.append(f.readline())
+
+        return data
+
+    
+    def queryDatabase(self, database: str, *filterData) -> List[str]:
+        data = None
+        with open('Input/database/{}.txt'.format(database), "r", encoding='utf8') as f:
+            data = f.readlines()
+
+        for key in filterData:
+            if "?" not in key:
+                data = list(filter(lambda x: key in x, data))
+
+        return data

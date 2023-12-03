@@ -1,73 +1,75 @@
-"""
-© 2017 Hoàng Lê Hải Thanh (Thanh Hoang Le Hai) aka GhostBB
-If there are any problems, contact me at mail@hoanglehaithanh.com or 1413492@hcmut.edu.vn 
-This project is under [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0) (Inherit from NLTK)
-"""
-import nltk
-from nltk import grammar, parse
+from models.preprocess import preprocess
+from models.maltparse import malt_parse
+from models.grammar_relation import relationalize
+from models.logical_form import logicalize
+from models.semantic_procedure import proceduralize
+from models.execute import execute
+from models.io import get_questions, write_to_file
 import argparse
 
-from nlp_parser import parse_to_procedure
-from nlp_data import retrieve_result
-from nlp_file import write_file
+def run_query(query: str, extra_log=True):
 
-def main(args):
-    """
-    Main entry point for the program
-    """
-    #Load grammar from .fcfg file
-    print("-------------Loading grammar---------------------")
-    nlp_grammar = parse.load_parser(args.rule_file_name, trace = 0)
-    print("Grammar loaded at {}".format(args.rule_file_name))
-    write_file(1, str(nlp_grammar.grammar()))
-               
-    question = args.question
+    log_string = ""
     
-    #Get parse tree
-    print("-------------Parsed structure-------------")
-    tree = nlp_grammar.parse_one(question.replace('?','').split())
-    print(question)
-    print(tree)
-    write_file(2, str(tree))
- 
-    #Parse to logical form
-    print("-------------Parsed logical form-------------")
-    logical_form = str(tree.label()['SEM']).replace(',',' ')
-    print(logical_form)
-    write_file(3, str(logical_form))
-               
-    #Get procedure semantics
-    print("-------------Procedure semantics-------------")
-    procedure_semantics = parse_to_procedure(tree)
-    print(procedure_semantics['str'])
-    write_file(4, procedure_semantics['str'])
-    
-    #Retrive result:
-    print("-------------Retrieved result-------------")
-    results = retrieve_result(procedure_semantics)
-    if len(results) == 0:
-        print("No result found!")
-    else:
-        for result in results:
-            print(result, end=' ', flush=True)
-        print('')
-        write_file(5, " ".join(results))
-    
-    
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="NLP Assignment Command Line")
-    
-    parser.add_argument(
-      '--question',
-      default= "Which flight to Huế city arrives at 20:00HR ?",
-      help= "Question to be parsed. Default = 'Which flight to Huế city arrives at 20:00HR ?'"
-      )
-    
-    parser.add_argument(
-      '--rule_file_name',
-      default= "grammar.fcfg",
-      help= "Context Free Grammar file to be parsed. Default = 'grammar.fcfg'"
-      )
+    log_string += "Câu hỏi: " + query + "\n"
+
+    tokens = preprocess(query)
+    context_deps = malt_parse(tokens)
+    relations = relationalize(context_deps)
+    sem = logicalize(relations)
+    procedure = proceduralize(sem)
+    ans = execute(procedure)
+
+    if extra_log:
+        log_string += "\n** Dependencies **\n"
+        for x in context_deps:
+            log_string += str(x) + "\n"
+
+        log_string += "\n** Grammar Relations **\n"
+        for x in relations:
+            log_string += str(x) + "\n"
+
+        log_string += "\n** Logical Form **\n"
+        log_string += str(sem) + "\n"
+
+        log_string += "\n** Procedure **\n"
+        log_string += str(procedure) + "\n"
+
+        log_string += "\n"
+
+    log_string += f"Trả lời: {ans}\n"
+
+    return log_string
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-v", "--verbosity",
+                        help="In ra chi tiết output của các thành phần được phân tích.",
+                        action="store_true", default=False)
+    parser.add_argument("-s", "--sentence",
+                        help="Nhập câu hỏi trực tiếp trên command line")
     
     args = parser.parse_args()
-    main(args)
+
+    if args.sentence:
+        try:
+            print(run_query(args.sentence, args.verbosity), end="")
+        except:
+            print("Không thể trả lời câu hỏi này. Vui lòng thử câu khác.")
+        return
+
+    queries = get_questions("input/questions.txt")
+
+    a_th = ord("a")
+
+    for index, query in enumerate(queries):
+        output_log = ""
+        try:
+            output_log += run_query(query, True)
+        except:
+            output_log("Không thể trả lời câu hỏi này. Vui lòng thử câu khác.")
+
+        write_to_file(output_log, f"output/output_{chr(a_th + index)}.txt")
+
+if __name__ == "__main__":
+    main()

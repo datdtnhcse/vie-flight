@@ -21,7 +21,7 @@ def main() -> None:
         tokens = preprocess.tokenize(text)
         types = preprocess.getWordTypes(tokens)
 
-        output_file = f"Output/output_{i+1}.txt"
+        output_file = f"Output/output_test.txt"
         io.writeData(output_file, "w+", f"##### OUTPUT OF QUERY QUESTION {i+1} #####\n\n")
 
         io.writeData(output_file, "a+", f"----- Tokenize -----\n")

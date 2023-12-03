@@ -25,7 +25,6 @@ RIGHTARC	['Root', 'đến', '?']	[]	(punc, đến, ?)
 (whmod, tàu_hỏa, nào) (subj, đến, tàu_hỏa) (root, Root, đến) (dobj, đến, thành_phố) (namemod, thành_phố, hồ_chí_minh) (punc, đến, ?)
 ------------------------------
 
-
 ---- Grammartical Relation ----
 (s1 WHQUERY (WHICH t1 TÀU_HỎA))
 (s1 PRED ĐẾN)

@@ -162,14 +162,18 @@ class Process:
             elif buffType == "Prep":
                 if stackType == "IVerb" or stackType == "OVerb":
                     return self.RIGHTARC, "pmod"
+                elif stackType == "Noun":
+                    return self.RIGHTARC, "timemod"
             elif buffType == "Aux":
                 if stackType == "IVerb" or stackType == "OVerb":
                     return self.RIGHTARC, "aux"
                 elif not list(filter(lambda x: "root" in x, self.relations)):
                     return self.SHIFT, None
             elif buffType == "Time":
-                if stackType == "Aux":
+                if stackType == "Aux" and (len(self.stack) < 2):
                     return self.RIGHTARC, "timemod"
+                else: 
+                    return self.RIGHTARC, "rtimemod"
             elif buffType == "ID":
                 if stackType == "Noun":
                     return self.RIGHTARC, "idmod"
@@ -221,19 +225,20 @@ class Process:
                 elif "idmod" in relations[i]:
                     tokens = relations[i].split()
                     relations = [relation.replace(tokens[1], "[ID-{}-{}]".format(tokens[2], tokens[1])) for relation in relations]
-
+             
             self.dep_relation = relations
-            self.gram_relation = set()
+            self.gram_relation = list()
 
 
         def transform(self) -> List[str]:
             for relation in self.dep_relation:
                 transformRelation = self.__relationTransform(relation)
-
                 if transformRelation:
-                    self.gram_relation.add(transformRelation)
-
-            self.gram_relation = list(self.gram_relation)
+                    if transformRelation not in self.gram_relation:
+                        self.gram_relation.append(transformRelation)
+            
+            # self.gram_relation = list(set(self.gram_relation))
+            # print(self.gram_relation)
             query = list(filter(lambda x: "QUERY" in x, self.gram_relation))
             pred = list(filter(lambda x: "PRED" in x, self.gram_relation))
             subj = list(filter(lambda x: "LSUBJ" in x, self.gram_relation))
@@ -255,6 +260,8 @@ class Process:
                 result = "({} LOBJ {})".format("s1", relation[2])
             elif "timemod" in relation:
                 result = "({} TIME {})".format("s1", relation[2].upper())
+            elif "rtimemod" in relation:
+                result = "({} RUN_TIME {})".format("s1", relation[2].upper())
             elif "whmod" in relation:
                 if MAPPING[relation[2]] == "WHICH":
                     result = "({} WHQUERY [WHICH-{}-{}])".format("s1", self.createVariable(relation[1][0]), relation[1].upper())
@@ -323,6 +330,8 @@ class Process:
                         self.logicalForm.append("(AT_TIME {} {})".format(tokens[0], tokens[2]))
                     elif "WHAT" in relation and "TIME" in relation:
                         self.logicalForm.append("(RUN_TIME {} {})".format(tokens[0], tokens[2]))
+                elif "RUN_TIME" in relation:
+                        self.logicalForm.append("(RUN_TIME {} {})".format(tokens[0], tokens[2]))
                 elif "YNQUERY" in relation:
                     self.mode = "YN"
                 elif "TIME" in relation:
@@ -380,26 +389,33 @@ class Process:
                     else:
                         self.subj.append(subj)
                 elif "FROM_LOC" in relation:
-                    tokens = tokens[3][1:-1].split('-')
-                    self.dtime[0] = True
-                    self.dtime[1][1] = MAPPING[tokens[2].lower()]
-                    if "TIME" in self.subj:
-                        self.subj.append("STIME")
-                        self.subj.remove("TIME")
-                    self.runtime[1][1] = MAPPING[tokens[2].lower()]
+                    if "TO_LOC" not in relation:
+                        tokens = tokens[3][1:-1].split('-')
+                        self.dtime[0] = True
+                        self.dtime[1][1] = MAPPING[tokens[2].lower()]
+                        if "TIME" in self.subj:
+                            self.subj.append("STIME")
+                            self.subj.remove("TIME")
+                        self.runtime[1][1] = MAPPING[tokens[2].lower()]
+                elif "RUN_TIME" in relation:
+                    self.atime[0] = False
+                    self.dtime[0] = False
+                    self.runtime[0] = True
                 elif "TO_LOC" in relation:
-                    tokens = tokens[3][1:-1].split('-')
-                    self.atime[0] = True
-                    self.atime[1][1] = MAPPING[tokens[2].lower()]
-                    if "TIME" in self.subj:
-                        self.subj.append("DTIME")
-                        self.subj.remove("TIME")
-                    self.runtime[1][2] = MAPPING[tokens[2].lower()]
+                    if "FROM_LOC" not in relation:
+                        tokens = tokens[3][1:-1].split('-')
+                        self.atime[0] = True
+                        self.atime[1][1] = MAPPING[tokens[2].lower()]
+                        if "TIME" in self.subj:
+                            self.subj.append("DTIME")
+                            self.subj.remove("TIME")
+                        self.runtime[1][2] = MAPPING[tokens[2].lower()]
                 elif "AT_TIME" in relation:
                     if self.action == "ARRIVE":
                         self.atime[1][2] = tokens[2]
                     elif self.action == "LEAVE":
                         self.dtime[1][2] = tokens[2]
+                
                 elif len(tokens) == 2:
                     self.action = MAPPING[tokens[0].lower()]
                     if self.action == "ARRIVE":

@@ -14,7 +14,8 @@ def main() -> None:
     preprocess = PreProcessing.getInstance()
     process = Process.getInstance()
 
-    sentences = io.loadData("Input/question/")
+    # sentences = io.loadData("Input/question/")
+    sentences = io.loadData("Input/q_test/")
 
     for i, text in enumerate(sentences):
         tokens = preprocess.tokenize(text)

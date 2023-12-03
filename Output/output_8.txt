@@ -1,0 +1,62 @@
+##### OUTPUT OF QUERY QUESTION 8 #####
+
+----- Tokenize -----
+tàu_hỏa
+b3
+chạy
+từ
+hồ_chí_minh
+lúc
+10:00hr
+phải
+không
+?
+------------------------------
+
+
+----- Dependency Parsing -----
+SHIFT	['Root', 'tàu_hỏa']	['b3', 'chạy', 'từ', 'hồ_chí_minh', 'lúc', '10:00hr', 'phải', 'không', '?']	
+RIGHTARC	['Root', 'tàu_hỏa', 'b3']	['chạy', 'từ', 'hồ_chí_minh', 'lúc', '10:00hr', 'phải', 'không', '?']	(idmod, tàu_hỏa, b3)
+REDUCE	['Root', 'tàu_hỏa']	['chạy', 'từ', 'hồ_chí_minh', 'lúc', '10:00hr', 'phải', 'không', '?']	
+LEFTARC	['Root']	['chạy', 'từ', 'hồ_chí_minh', 'lúc', '10:00hr', 'phải', 'không', '?']	(subj, chạy, tàu_hỏa)
+RIGHTARC	['Root', 'chạy']	['từ', 'hồ_chí_minh', 'lúc', '10:00hr', 'phải', 'không', '?']	(root, Root, chạy)
+RIGHTARC	['Root', 'chạy', 'từ']	['hồ_chí_minh', 'lúc', '10:00hr', 'phải', 'không', '?']	(pmod, chạy, từ)
+RIGHTARC	['Root', 'chạy', 'từ', 'hồ_chí_minh']	['lúc', '10:00hr', 'phải', 'không', '?']	(pobj, từ, hồ_chí_minh)
+REDUCE	['Root', 'chạy', 'từ']	['lúc', '10:00hr', 'phải', 'không', '?']	
+REDUCE	['Root', 'chạy']	['lúc', '10:00hr', 'phải', 'không', '?']	
+RIGHTARC	['Root', 'chạy', 'lúc']	['10:00hr', 'phải', 'không', '?']	(aux, chạy, lúc)
+RIGHTARC	['Root', 'chạy', 'lúc', '10:00hr']	['phải', 'không', '?']	(rtimemod, lúc, 10:00hr)
+REDUCE	['Root', 'chạy', 'lúc']	['phải', 'không', '?']	
+REDUCE	['Root', 'chạy']	['phải', 'không', '?']	
+RIGHTARC	['Root', 'chạy', 'phải']	['không', '?']	(aux, chạy, phải)
+REDUCE	['Root', 'chạy']	['không', '?']	
+RIGHTARC	['Root', 'chạy', 'không']	['?']	(aux, chạy, không)
+REDUCE	['Root', 'chạy']	['?']	
+RIGHTARC	['Root', 'chạy', '?']	[]	(punc, chạy, ?)
+
+(idmod, tàu_hỏa, b3) (subj, chạy, tàu_hỏa) (root, Root, chạy) (pmod, chạy, từ) (pobj, từ, hồ_chí_minh) (aux, chạy, lúc) (rtimemod, lúc, 10:00hr) (aux, chạy, phải) (aux, chạy, không) (punc, chạy, ?)
+------------------------------
+
+
+---- Grammartical Relation ----
+(s1 YNQUERY CHẠY)
+(s1 PRED CHẠY)
+(s1 LSUBJ (ID B3 TÀU_HỎA))
+(s1 PFROM (NAME h1 "HỒ_CHÍ_MINH"))
+(s1 RUN_TIME 10:00HR)
+-------------------------------
+
+
+-------- Logical Form --------
+(YS QUERY(& (CHẠY s1) (EXPERIENCER s1 (ID B3 TÀU_HỎA)) (FROM_LOC fl s1 (NAME h1 "HỒ_CHÍ_MINH")) (RUN_TIME s1 10:00HR)))
+------------------------------
+
+
+----- Procedure Semantics -----
+(YES-NO (RUN-TIME B3 HCM ?d ?rt))
+-------------------------------
+
+
+------ Procedure Execute ------
+Có. 
+-------------------------------

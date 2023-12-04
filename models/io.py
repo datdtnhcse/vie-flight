@@ -11,11 +11,9 @@ class IO:
 
         return IO.instance
 
-
     def writeData(self, file: str, mode: str, data: str) -> None:
         with open(file, mode, encoding='utf8') as f:
             f.write(data)
-
 
     def loadData(self, folder: str) -> List[str]:
         data = []

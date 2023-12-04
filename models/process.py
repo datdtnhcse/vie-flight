@@ -2,12 +2,7 @@ import regex
 from typing import List, Tuple
 from abc import ABC, abstractmethod
 from Models.IO import *
-from Models.Const_flight import *
-from Models.DependencyParser import *
-from Models.GrammarRelation import *
-from Models.LogicalForm import *
-from Models.Procedure import *
-from Models.preprocess import *
+from Models.API import *
 
 class Process:
     instance = None
